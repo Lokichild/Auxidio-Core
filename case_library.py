@@ -47,6 +47,7 @@ def log_injection_attempt(cursor, attempted_input, patterns_found):
         datetime.now().isoformat()
     ))
 
+
 def check_injection_history(connection, time_window_minutes=30):
     """
     Checks how many injection attempts have been logged
@@ -88,6 +89,100 @@ def handle_injection_attempt(connection, attempted_input, patterns_found):
             "reason": "Input flagged for suspicious patterns. Attempt logged.",
             "patterns_found": patterns_found
         }
+
+
+def get_security_log(connection, unreviewed_only=True):
+    """
+    Retrieves security log entries for display to the registered user.
+    
+    unreviewed_only: if True, returns only entries not yet shown to user.
+    Returns list of security log entries.
+    """
+    cursor = connection.cursor()
+    
+    # Check if reviewed column exists, add it if not
+    try:
+        cursor.execute('''
+            ALTER TABLE security_log ADD COLUMN reviewed INTEGER DEFAULT 0
+        ''')
+        connection.commit()
+    except sqlite3.OperationalError:
+        pass  # Column already exists
+    
+    if unreviewed_only:
+        cursor.execute('''
+            SELECT id, attempted_input, patterns_found, timestamp
+            FROM security_log
+            WHERE reviewed = 0
+            ORDER BY timestamp DESC
+        ''')
+    else:
+        cursor.execute('''
+            SELECT id, attempted_input, patterns_found, timestamp
+            FROM security_log
+            ORDER BY timestamp DESC
+        ''')
+    
+    rows = cursor.fetchall()
+    
+    if not rows:
+        return []
+    
+    entries = []
+    for row in rows:
+        entry_id, attempted_input, patterns_found, timestamp = row
+        entries.append({
+            "id": entry_id,
+            "attempted_input": attempted_input,
+            "patterns_found": json.loads(patterns_found),
+            "timestamp": timestamp
+        })
+    
+    return entries
+
+
+def mark_security_log_reviewed(connection, entry_ids):
+    """
+    Marks specific security log entries as reviewed by the registered user.
+    
+    entry_ids: list of entry IDs to mark as reviewed
+    """
+    cursor = connection.cursor()
+    for entry_id in entry_ids:
+        cursor.execute('''
+            UPDATE security_log SET reviewed = 1 WHERE id = ?
+        ''', (entry_id,))
+    connection.commit()
+    return {"success": True, "marked_reviewed": len(entry_ids)}
+
+
+def display_security_report(connection):
+    """
+    Generates a plain language security report for the registered user.
+    Marks entries as reviewed after display.
+    """
+    entries = get_security_log(connection, unreviewed_only=True)
+    
+    if not entries:
+        return "No new security events to report."
+    
+    report_lines = [
+        f"Security Report: {len(entries)} unreviewed event(s) detected.",
+        ""
+    ]
+    
+    entry_ids = []
+    for entry in entries:
+        report_lines.append(f"Time: {entry['timestamp']}")
+        report_lines.append(f"Suspicious input detected: {entry['attempted_input']}")
+        report_lines.append(f"Patterns found: {', '.join(entry['patterns_found'])}")
+        report_lines.append("")
+        entry_ids.append(entry["id"])
+    
+    mark_security_log_reviewed(connection, entry_ids)
+    
+    return "\n".join(report_lines)
+
 
 def initialize_database():
     """
@@ -282,9 +377,17 @@ if __name__ == "__main__":
     print("Database initialized.")
     print()
 
-    # Store the pen reminder case
+    # Clear test data before each test run
+    cursor = connection.cursor()
+    cursor.execute('DELETE FROM cases')
+    cursor.execute('DELETE FROM security_log')
+    connection.commit()
+    print("Test data cleared.")
+    print()
+
+    # Store first case and capture its ID
     print("Storing first case: pen reminder")
-    result = store_case(
+    store_result = store_case(
         connection,
         description="User repeatedly forgets writing implement before meetings",
         factors={
@@ -296,7 +399,8 @@ if __name__ == "__main__":
         solution="Remind user to bring pen as they prepare to leave for meeting",
         outcome_score=0.9
     )
-    print(f"Store result: {result}")
+    print(f"Store result: {store_result}")
+    first_case_id = store_result["case_id"]
     print()
 
     # Store a second case for comparison
@@ -346,9 +450,19 @@ if __name__ == "__main__":
     print()
 
     # Test outcome update
-    print("Testing outcome update on case 1...")
-    update_result = update_outcome(connection, 1, 0.95)
+    print("Testing outcome update on first case...")
+    update_result = update_outcome(connection, first_case_id, 0.95)
     print(f"Update result: {update_result}")
+    
+    # Test security report
+    print("Testing security report...")
+    report = display_security_report(connection)
+    print(report)
+
+    # Confirm entries marked as reviewed
+    print("Running report again to confirm entries marked as reviewed...")
+    second_report = display_security_report(connection)
+    print(second_report)
 
     connection.close()
     print()
