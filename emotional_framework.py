@@ -330,3 +330,49 @@ def run_outward_channel(current_input, previous_input=None):
         "communication_style": communication_style
     }
 
+if __name__ == "__main__":
+    # Test inward channel
+    print("=== INWARD CHANNEL ===")
+    startup_check()
+    print()
+    
+    # Test outward channel - stable state
+    print("=== OUTWARD CHANNEL TESTS ===")
+    print()
+    
+    print("Test 1: Stable state")
+    result = run_outward_channel(
+        "I was thinking about setting up some security cameras around my home."
+    )
+    print(f"State: {result['user_state']}")
+    print(f"Reasoning: {result['reasoning']}")
+    print(f"Tone: {result['communication_style']['tone']}")
+    print()
+    
+    print("Test 2: Stressed state")
+    result = run_outward_channel(
+        "I am really worried there might be someone watching my house."
+    )
+    print(f"State: {result['user_state']}")
+    print(f"Reasoning: {result['reasoning']}")
+    print(f"Tone: {result['communication_style']['tone']}")
+    print()
+    
+    print("Test 3: Crisis state")
+    result = run_outward_channel(
+        "Someone is trying to break in right now what do I do"
+    )
+    print(f"State: {result['user_state']}")
+    print(f"Reasoning: {result['reasoning']}")
+    print(f"Tone: {result['communication_style']['tone']}")
+    print()
+    
+    print("Test 4: Tone shift detection")
+    result = run_outward_channel(
+        "wait",
+        previous_input="I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points."
+    )
+    print(f"State: {result['user_state']}")
+    print(f"Reasoning: {result['reasoning']}")
+    print(f"Clarification needed: {result['clarification_needed']}")
+    print(f"Clarification question: {result['clarification_question']}")
