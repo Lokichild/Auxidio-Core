@@ -1,3 +1,7 @@
+# Copyright (c) 2026 Jerry James Stephens / Bound Wolf Technologies
+# All rights reserved. No part of this code may be copied, modified,
+# or distributed without explicit written permission from the author.
+
 # Auxidio Core Container
 # Contains: decision engine, emotional framework, identity, case library
 
