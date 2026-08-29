@@ -9,6 +9,17 @@ Auxidio exists to help mentally disabled people make better decisions. The devic
 1. **Fully local, always.** A portable assistive device cannot depend on connectivity. No cloud, at runtime or for training.
 2. **The model must fit the device, not the device the model.** Whatever base model is chosen must run on the Orange Pi 6 Plus. The fine-tuned philosophy model is an adapter on that same base — no extra footprint beyond the adapter.
 3. **The duty of care extends beyond the user.** When guiding a decision, the system must determine the least harm for *everyone present in the situation*, not just the disabled person. This is why vision is designed for continuous situational awareness rather than on-demand snapshots (see `Rust Harness Design.md` §3).
+4. **The device must adapt to the individual.** Speaking rate, mumbling, stuttering, pauses, and processing speed differ per person, so peripheral configuration learns over the life of the device — while the rigid core never adapts (see `User Adaptation.md`).
+
+### Safety Protocol (Locus of Control)
+
+From the vision deck (`Vision Review — Ethical AGI Architecture.md`), three rules prevent the "Master Machine" and are binding on this architecture:
+
+1. **Consent is core.** The service is voluntarily granted by persons of appropriate authority; for the assistive device this means the user and, where applicable, their caregiver.
+2. **Earned authority.** Influence beyond the base service is granted by human oversight only after verifiable ethical performance — the system's authority grows from demonstrated outcomes, never from capability.
+3. **The steward's role.** Large-scale actions are limited to proposal and communication; humans retain final executive authority. The system recommends; it never acquires, never compels, and never preserves itself against the user.
+
+These are already visible in the concrete design: adaptation announcements with undo, caregiver pins, upgrade requests as evidence-backed proposals, and deferral rights on all self-maintenance requests.
 
 This document set defines the architecture for the next stage of Auxidio:
 
@@ -32,7 +43,7 @@ This design inherits everything established in `Auxidio- Design Decisions and Re
 
 | Component | Language | Role | Status |
 |---|---|---|---|
-| `auxidio-harness` | Rust | Sensor ingestion (vision/voice/text), session management, memory structure, routing | New |
+| `auxidio-harness` | Rust | Sensor ingestion (vision/voice/text), session management, memory structure, context GC, routing | New |
 | `auxidio-core` | Rust | 1:1 port of the rigid core (`decision_engine`, `case_library`, `emotional_framework`, `identity`), pinned to the Python reference by differential tests | New (early port) |
 | Math Verifier | Python | Sandboxed execution of model-proposed arithmetic scripts; results fed back to the model. Python stays on-device for this because the point is executing *real Python scripts* | New |
 | Corpus Pipeline | Python (offline) | Collect, normalize, weight, and export philosophy/religion training data (Levinas weighted higher) | New |
@@ -63,6 +74,8 @@ flowchart TD
         WGT["Weight Determiner"]
         MEM[("Memory Store (SQLite)")]
         CORE["Rigid Core in-process: decision / cases / emotion / identity (core/)"]
+        SELF["Self Monitor (inward channel)"]
+        QUE["Problem Queue (P_s ranking)"]
         TOOL["Tool Router + Verifier Bridge"]
         OUT["Output Dispatcher"]
     end
@@ -95,6 +108,10 @@ flowchart TD
     CLS --> WGT
     WGT -- "situation class + weights" --> SES
     SES <--> CORE
+    SELF -- "telemetry" --> MEM
+    SELF -- "C_self" --> QUE
+    WGT -- "C_others" --> QUE
+    QUE -- "attention order" --> SES
     SES -- "prompt" --> OLL
     OLL -- "response / VERIFY request" --> TOOL
     TOOL <--> VER
@@ -167,7 +184,7 @@ sequenceDiagram
 | Vision | Continuous ambient awareness with escalation during active guidance situations; raw frames in a rolling buffer only (see `Rust Harness Design.md` §3) |
 | STT | Whisper/whisper.cpp loaded once at startup (fixes the known reload-per-use defect from Roadmap Phase 7) |
 | TTS | Piper, local voice files |
-| Storage | SQLite for memory store and case library; no external database server |
+| Storage | Two tiers: in-process working memory (RAM) + SQLite durable store, with a consolidation loop. ACID configured explicitly (WAL, synchronous=FULL, one-turn-one-transaction); smooth restart via checkpoint + episode replay. No external database server, no Redis daemon — `Memory and Weighting.md` §9-10 |
 | IPC | Newline-delimited JSON over stdio between harness and Python child processes. No network sockets required; localhost-only if sockets are ever used |
 | Training hardware | Separate local dev machine (whatever GPU is available). Output is a GGUF adapter file transferred by hand. Training never runs on the target during normal operation |
 
@@ -210,6 +227,9 @@ The existing `auxidio.py` conversational loop stays runnable throughout the buil
 | `Memory and Weighting.md` | Memory store schema, situation classification, weight determination flow |
 | `Python Tools.md` | Math Verifier sandbox rules, verification loop protocol, corpus pipeline pointer |
 | `Training Corpus Plan.md` | Sources, licensing, Levinas weighting, dataset construction, fine-tune and evaluation plan |
+| `User Adaptation.md` | Configuration that learns: profile schema, adaptation loop, what may and may not adapt |
+| `Self Monitoring and Maintenance.md` | Inward channel: self-telemetry, health ledger, power/thermal/replacement/upgrade requests |
+| `Vision Review — Ethical AGI Architecture.md` | Review of the Oct 2025 vision deck: concept map, integrations (P_s queue, C_self/C_others, accountability loop), open questions |
 
 ---
 

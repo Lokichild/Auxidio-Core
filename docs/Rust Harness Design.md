@@ -14,6 +14,8 @@ The harness is the body around the rigid core. It owns sensors, sessions, memory
 6. **Rigid core (in-process)** — owns the Rust port of the rigid core modules as the `auxidio-core` crate. Direct function calls inside the binary; no IPC on the decision path.
 7. **Verifier bridge** — supervises the Math Verifier Python child process; newline-delimited JSON over stdio. Python remains on device for this one job: executing real verification scripts.
 8. **Output dispatch** — Piper TTS for speech, text/action channels for everything else.
+9. **Problem queue** — when multiple problems are open at once (user request, detected situation, own maintenance request), rank attention by P_s (see §10).
+10. **Context manager** — background garbage collector and compressor for the model window; never interrupts an in-flight interaction (see §11).
 
 Non-responsibilities: the harness does not *invent* ethical logic. The core's logic is ported 1:1 from the frozen Python reference at the repo root, and differential tests prove the port behaves identically (see §9).
 
@@ -162,6 +164,8 @@ Full loop detail is in `Python Tools.md`.
 
 All hardware-specific values move to a config file at the repo root (`harness.toml`), fixing the hardcoded-paths defect from Roadmap Phase 7 by design: device indices, mouse device path, DB paths, Piper voice path, Ollama endpoint (localhost only), model name, timeouts, session context budget, verification round limit.
 
+Config is layered and hot-reloaded, because the device must adapt to its user mid-session (`User Adaptation.md`): `harness.toml` defaults < learned adaptations (memory store) < caregiver/user pins < session overrides. No component caches these values at startup; the session manager reads them per turn.
+
 ---
 
 ## 8. Build Order
@@ -175,7 +179,101 @@ All hardware-specific values move to a config file at the repo root (`harness.to
 7. VERIFY loop with the Math Verifier.
 8. `auxidio.py` retirement check: harness must reproduce the Phase 5 behavior before the old integrator is deprecated.
 
+9. Problem queue (P_s) once the classifier and self monitor produce scores — multi-problem sessions ranked.
+
 Each step has an independently demonstrable outcome, per Principle 6 — this is not a race. Step 2 comes first precisely because the port is cheap now and everything after it builds on the better core.
+
+---
+
+## 10. Problem Queue and Priority (P_s)
+
+With continuous situational awareness, a session can hold several open problems at once. The vision deck's priority score ranks them:
+
+`P_s = (C_self + (C_others × M_impact)) / M_Level`
+
+Inputs: `C_self` from the Self Monitor; `C_others` from the situation classifier + outward channel + head count (device-scope definition, `Vision Review` §4.2); `M_impact` = people affected; `M_Level` from the encoding below. All four are config-level open testing parameters.
+
+| M_Level | Need class | Examples |
+|---|---|---|
+| 1 | Physiological / life-safety | injury, fire, acute crisis |
+| 2 | Security | shelter, threat, stability |
+| 3 | Belonging | isolation, conflict, relationships |
+| 4 | Esteem / capability | confidence, competence |
+| 5 | Growth | planning, learning, goals |
+
+Cross-level problems take their **lowest** level involved — a hungry child is Level 1 whatever else is true. Tradeoffs between groups or levels are adjudicated by `score_decision`'s proportionality logic; P_s only orders attention.
+
+**Truth-gate interaction — the rule that keeps urgency honest:**
+
+- P_s ranks what gets attention; the confidence tier decides what *kind* of action follows.
+- `gather_more_data` never means paralysis: it means the next action is epistemic — ask, observe, verify. In a crisis, the right question *is* the action.
+- No decisive action on unverified premises regardless of P_s. A high-priority guess is still a guess.
+
+Open problems are re-scored each turn; resolved ones close into episodic memory and, where significant, into `PROBLEM_RECORDS` (`Memory and Weighting.md` §8).
+
+---
+
+## 11. Context Window Management — the Garbage Collector
+
+### 11.1 The problem
+
+Continuous sessions, vision context, verification loops, and memory injection fill any context window; on SBC hardware a long window also slows every inference. The window must stay small and relevant, and its management must never pause or interrupt an interaction in flight — the user's voice response keeps flowing while compaction happens in the background.
+
+### 11.2 Context as memory: roots, heap, backing store
+
+The GC analogy is the design:
+
+- **Roots (pinned, never collected):** identity + safety protocol + system prompt; every open problem from the P_s queue with its attached context; the current turn; caregiver/user pins.
+- **Heap (collectible):** hot verbatim turns; warm summaries; retrieved memory snippets; verification history beyond the latest result.
+- **Backing store (disk):** the verbatim episode store. The context is a *view*; the store is truth. Summaries are lossy but recoverable — when a summarized topic spikes in relevance, the verbatim episode is paged back in (a page fault) and pinned while relevant. Lossy where acceptable, lossless where it matters: the same doctrine as the storage tiers (`Memory and Weighting.md` §9-10).
+
+Per-turn token budget, allocated by section:
+
+| Section | Policy |
+|---|---|
+| Roots | fixed, pinned |
+| Open-problem context | pinned while the problem is open |
+| Hot turns | elastic, recency-ordered |
+| Summaries | elastic, hierarchical |
+| Retrieved memory | elastic, relevance-ranked |
+
+### 11.3 The collector: mark, compact, swap
+
+The collector is a background harness task running concurrently with the turn loop. It never touches the live context — it works on a shadow copy, like a copying collector:
+
+1. **Mark.** Relevance scoring via the weight determiner: recency × situation-class match × factor weights × referenced-by-open-problems. Referenced items are roots for as long as the problem stays open.
+2. **Compact.** Evict unreachable items; compress evicted-but-significant spans into summaries with a cheap local summarizer (gemma3:270m-class, or extractive templates for structured data — heavier tooling only after demonstrated insufficiency, Principle 2); merge adjacent summaries into higher-level summaries over time (hierarchical compaction).
+3. **Swap.** Atomically replace the live context with the compacted shadow copy at a safe point — between model calls, between turns. A pointer swap, not an edit.
+
+```mermaid
+flowchart LR
+    subgraph LIVE["Live context (serving the turn)"]
+        LC["current window"]
+    end
+    subgraph BG["Collector task (background)"]
+        MK["mark: relevance scoring"] --> CP["compact: evict + summarize"]
+        CP --> SH["compacted shadow copy"]
+    end
+    LC -- "snapshot at safe point" --> MK
+    SH -- "atomic swap at safe point" --> LC
+    EP[("Episode store (verbatim)")] -- "page-in on relevance spike" --> LC
+    CP -- "summaries carry episode ids" --> EP
+```
+
+### 11.4 Non-interruption guarantees
+
+1. **The collector never mutates the live context mid-turn.** The swap is a pointer exchange at a safe point; an in-flight voice or text response is untouched.
+2. **Bounded compute budget.** The collector yields to foreground inference and throttles when C_self reports thermal or load stress — the device's health outranks tidiness.
+3. **Hard-cap fallback.** If the window nears its cap before the collector finishes, deterministic truncation of the lowest-relevance items (no model needed, microseconds) keeps the turn flowing; the collector reconciles afterward. Overflow is degraded gracefully, never visibly.
+4. **Summaries preserve the load-bearing parts:** decisions made, commitments, names, and numbers (numbers keep the verifier's truth discipline — a summarized quantity is still a claim), and emotional-state transitions. Everything else may compress.
+
+### 11.5 Verification blocks under GC
+
+Only the latest verified result stays hot in the window. Older claim/script/result triples collapse to a one-line marker (`verified` / `mismatched`, value, episode id) with the page-fault path to the verbatim episode. The model keeps its checked arithmetic without paying for its history.
+
+### 11.6 Accountability
+
+Compression touches the view, never the store. Episodes remain verbatim on disk under the ACID rules of `Memory and Weighting.md` §10; if a later decision needs what was summarized away, the page fault restores it. The context is allowed to forget; the system is not.
 
 ---
 
