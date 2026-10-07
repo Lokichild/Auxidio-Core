@@ -104,7 +104,7 @@ sequenceDiagram
         SES->>O: wait for stable user state, then deliver
     end
     O-->>SES: delivered (status = delivered)
-    Note over SES: user may defer; defer_count increments
+    Note over SES: user may defer#59; defer_count increments
     SES->>M: outcome: resolved / deferred / dismissed
     Note over S: repeated deferral of a critical request<br/>escalates to caregiver report, never to coercion
 ```
