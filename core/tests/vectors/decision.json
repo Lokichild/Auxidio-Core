@@ -1,0 +1,1891 @@
+{
+  "tier": [
+    {
+      "input": 0.0,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.3,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.3099999,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.31,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.55,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.5599999,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.56,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.85,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.8599999,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.86,
+      "expected": "confident_decision"
+    },
+    {
+      "input": 1.0,
+      "expected": "confident_decision"
+    },
+    {
+      "input": 0.6671329806093301,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.781700433788676,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.8376189579158705,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.1390737320059363,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.08389059597810478,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.6648242819959045,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.5359769125366047,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.8242200006794506,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.7916046302048009,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.23101683776693482,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.46172340907249043,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.6783592177307756,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.7903068562361695,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.2579136063205213,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.34175099656661234,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.9238307324991433,
+      "expected": "confident_decision"
+    },
+    {
+      "input": 0.5375648542294199,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.3903482815075533,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.8375958252080321,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.8925639763110351,
+      "expected": "confident_decision"
+    },
+    {
+      "input": 0.03328586275856016,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.5287295242150086,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.4040669888375754,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.4506696345735005,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.19088810364881426,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.5257752302872418,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.27147848769605176,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.6551299970484432,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.33917530519925265,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.5565388013623948,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.3613770778651938,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.18932103729367222,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.4120860682626337,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.09139226932101885,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.21339873149724609,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.47829616475206627,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.583896373668118,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.35497092777558237,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.9732944111163869,
+      "expected": "confident_decision"
+    },
+    {
+      "input": 0.38926809748712843,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.09378141751360802,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.8130348653789644,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.1218517877031623,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.40936315518569877,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.014689761329185314,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.4285824336836277,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.6740159057228253,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.8543994268299583,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.8161793142512348,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.029600537888884393,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.5154721286781356,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.3445691067793215,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.5384489265720521,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.3675717270597235,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.2820184433467654,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.6822274316930617,
+      "expected": "wary_but_secure"
+    },
+    {
+      "input": 0.1750115924956418,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.5418798310633477,
+      "expected": "proceed_only_if_necessary"
+    },
+    {
+      "input": 0.018028490288460763,
+      "expected": "gather_more_data"
+    },
+    {
+      "input": 0.37725704022207796,
+      "expected": "proceed_only_if_necessary"
+    }
+  ],
+  "evaluate": [
+    {
+      "confidence": 0.3330914790194398,
+      "collective": 0.35717366788942106,
+      "individual": -0.5985590234862377,
+      "expected": {
+        "score": 0.15,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.29590066484229016,
+      "collective": 0.9742493892149955,
+      "individual": 0.24036336722210638,
+      "expected": {
+        "score": 0.49,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.9869424334566138,
+      "collective": -0.7622732425374612,
+      "individual": -0.7197102783534166,
+      "expected": {
+        "score": 0.12,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.5775840461135489,
+      "collective": -0.5280486650457452,
+      "individual": -0.2574270659898845,
+      "expected": {
+        "score": 0.08,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.07526643410217726,
+      "collective": -0.2350548072622871,
+      "individual": 0.9357266833119378,
+      "expected": {
+        "score": 0.15,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.30174152776474905,
+      "collective": -0.5337392243584456,
+      "individual": 0.745082175079586,
+      "expected": {
+        "score": 0.14,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.2052441182014566,
+      "collective": -0.3654550554006537,
+      "individual": 0.3389388998846956,
+      "expected": {
+        "score": 0.06,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5565912740282791,
+      "collective": -0.025899135991463984,
+      "individual": 0.39824368243528774,
+      "expected": {
+        "score": 0.35,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.134398646995732,
+      "collective": 0.4669622385553025,
+      "individual": 0.1492015940852216,
+      "expected": {
+        "score": 0.24,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.1745707006233348,
+      "collective": 0.7189470637958224,
+      "individual": -0.35102466229943907,
+      "expected": {
+        "score": 0.23,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5081146336742874,
+      "collective": 0.9562088409310796,
+      "individual": -0.6959386028949153,
+      "expected": {
+        "score": 0.4,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.9510356757606043,
+      "collective": 0.7553190564382304,
+      "individual": 0.16267470691890695,
+      "expected": {
+        "score": 0.73,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.1523050320634799,
+      "collective": 0.22357230548876594,
+      "individual": 0.15628096175013928,
+      "expected": {
+        "score": 0.17,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.9128501969871948,
+      "collective": -0.6230740918800632,
+      "individual": 0.2228541601601124,
+      "expected": {
+        "score": 0.31,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.2598462774143444,
+      "collective": 0.04679116786247817,
+      "individual": -0.9966010323904408,
+      "expected": {
+        "score": -0.06,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5124874457558134,
+      "collective": -0.7801165894293824,
+      "individual": -0.39411785202850136,
+      "expected": {
+        "score": -0.06,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.1271036020894325,
+      "collective": -0.5173756707223405,
+      "individual": -0.23666888520974583,
+      "expected": {
+        "score": -0.14,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.4452755869402446,
+      "collective": -0.023633792632109296,
+      "individual": -0.2044767132463292,
+      "expected": {
+        "score": 0.17,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.8915199522737322,
+      "collective": 0.40893853811803127,
+      "individual": -0.09212712593569528,
+      "expected": {
+        "score": 0.55,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.5419094714043633,
+      "collective": -0.7914634275641583,
+      "individual": 0.3363708824349032,
+      "expected": {
+        "score": 0.1,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.9826379330954386,
+      "collective": 0.94239101534324,
+      "individual": 0.8360659761414413,
+      "expected": {
+        "score": 0.94,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.6146778596577503,
+      "collective": 0.11963720735226202,
+      "individual": -0.12497702462918614,
+      "expected": {
+        "score": 0.32,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.6443160197804046,
+      "collective": -0.6122843125584145,
+      "individual": 0.03124919282484373,
+      "expected": {
+        "score": 0.14,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5970834431681185,
+      "collective": 0.400540651956232,
+      "individual": -0.5424631091812022,
+      "expected": {
+        "score": 0.31,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5604230118957971,
+      "collective": 0.035416952625222375,
+      "individual": -0.46419215572813055,
+      "expected": {
+        "score": 0.2,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.8909525375100836,
+      "collective": 0.34749671082773004,
+      "individual": -0.6510232598355041,
+      "expected": {
+        "score": 0.42,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.08823398505669622,
+      "collective": -0.7425701470134696,
+      "individual": -0.2525028830099061,
+      "expected": {
+        "score": -0.23,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.601984268333932,
+      "collective": 0.257175545180099,
+      "individual": 0.24975499187180805,
+      "expected": {
+        "score": 0.43,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.3380526482647638,
+      "collective": 0.8673985625110545,
+      "individual": -0.9337361797555623,
+      "expected": {
+        "score": 0.24,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.823091785978319,
+      "collective": -0.7141547829442851,
+      "individual": 0.4675191575835669,
+      "expected": {
+        "score": 0.29,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5111407765750859,
+      "collective": -0.16034399625792828,
+      "individual": -0.2067276493074861,
+      "expected": {
+        "score": 0.17,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.25991506297578093,
+      "collective": -0.9455766193629409,
+      "individual": 0.9202386737164399,
+      "expected": {
+        "score": 0.03,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.22469241921348604,
+      "collective": 0.6648433369163589,
+      "individual": -0.10199600940462239,
+      "expected": {
+        "score": 0.29,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5495240237807514,
+      "collective": 0.7077961427617998,
+      "individual": 0.6515957526956451,
+      "expected": {
+        "score": 0.62,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.249559690879802,
+      "collective": 0.9061483983440617,
+      "individual": 0.5195400449352856,
+      "expected": {
+        "score": 0.5,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.11606113127543805,
+      "collective": -0.690192248211642,
+      "individual": -0.08118690115636329,
+      "expected": {
+        "score": -0.17,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.8144674566133826,
+      "collective": -0.22452685080815038,
+      "individual": -0.3247502427695208,
+      "expected": {
+        "score": 0.27,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5054477291422008,
+      "collective": -0.6167935608488595,
+      "individual": 0.07986493625548619,
+      "expected": {
+        "score": 0.08,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.20881503305907956,
+      "collective": 0.13794796782171725,
+      "individual": -0.5132629405262246,
+      "expected": {
+        "score": 0.04,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.8656223917448548,
+      "collective": -0.0675619377924832,
+      "individual": 0.2332968594757523,
+      "expected": {
+        "score": 0.46,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.22821054764823157,
+      "collective": 0.9839190781003049,
+      "individual": 0.5209207995866862,
+      "expected": {
+        "score": 0.51,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5106491225117634,
+      "collective": -0.7368469484697284,
+      "individual": 0.36950076046660385,
+      "expected": {
+        "score": 0.11,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.2851912637683742,
+      "collective": 0.10631513841536533,
+      "individual": -0.07740310405260331,
+      "expected": {
+        "score": 0.16,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.1027672550469737,
+      "collective": 0.4928952464513958,
+      "individual": -0.19161304602631346,
+      "expected": {
+        "score": 0.16,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.3487161429362041,
+      "collective": 0.8759748322017558,
+      "individual": 0.5566611633076328,
+      "expected": {
+        "score": 0.55,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.18908645649320233,
+      "collective": 0.6098935241377339,
+      "individual": -0.7467409242132981,
+      "expected": {
+        "score": 0.13,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.25028464540962203,
+      "collective": -0.9309897603302051,
+      "individual": 0.9975153740943861,
+      "expected": {
+        "score": 0.05,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.9051084432068118,
+      "collective": -0.02917482555947526,
+      "individual": 0.19549358874034706,
+      "expected": {
+        "score": 0.48,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.21273871975803127,
+      "collective": 0.8543217477733589,
+      "individual": -0.9795256063077824,
+      "expected": {
+        "score": 0.17,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.6077744738109333,
+      "collective": 0.9749716933048009,
+      "individual": -0.36940342359582456,
+      "expected": {
+        "score": 0.52,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5299159313626939,
+      "collective": 0.8500039221115072,
+      "individual": -0.748999181084566,
+      "expected": {
+        "score": 0.37,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.7467262524651411,
+      "collective": 0.5576601723259647,
+      "individual": -0.43942210832354944,
+      "expected": {
+        "score": 0.45,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.917361997549622,
+      "collective": -0.5127841024857569,
+      "individual": 0.705886675028986,
+      "expected": {
+        "score": 0.45,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.5114310632183032,
+      "collective": -0.7744804946600292,
+      "individual": 0.5654079066039306,
+      "expected": {
+        "score": 0.14,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.24094281731925993,
+      "collective": 0.8406804505974945,
+      "individual": 0.23630798093247418,
+      "expected": {
+        "score": 0.42,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.8790812948874741,
+      "collective": 0.26531877172068863,
+      "individual": 0.170691449285298,
+      "expected": {
+        "score": 0.55,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.4723547898958549,
+      "collective": 0.6327973642954321,
+      "individual": 0.5076433069047774,
+      "expected": {
+        "score": 0.53,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.8264548208156595,
+      "collective": 0.2523452044387682,
+      "individual": 0.6610759293486568,
+      "expected": {
+        "score": 0.62,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.10618000128907645,
+      "collective": -0.21279049970230401,
+      "individual": 0.993479233734575,
+      "expected": {
+        "score": 0.19,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.7499667927937678,
+      "collective": -0.06955542370884471,
+      "individual": 0.8596348965942648,
+      "expected": {
+        "score": 0.53,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5887163917668778,
+      "collective": -0.5591371336257198,
+      "individual": -0.45589171955647156,
+      "expected": {
+        "score": 0.04,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.4574056926444964,
+      "collective": -0.904266663854784,
+      "individual": -0.2227531136064147,
+      "expected": {
+        "score": -0.09,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.5906715430395229,
+      "collective": -0.1946356184191922,
+      "individual": 0.9350232098690736,
+      "expected": {
+        "score": 0.42,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.3427354697216751,
+      "collective": 0.009111942812890517,
+      "individual": -0.1267393049886154,
+      "expected": {
+        "score": 0.15,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.7070021796267658,
+      "collective": 0.566501129971573,
+      "individual": 0.7651716775115771,
+      "expected": {
+        "score": 0.68,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5404411488121714,
+      "collective": -0.33037649810442615,
+      "individual": -0.33435234916157897,
+      "expected": {
+        "score": 0.1,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.008824270607367679,
+      "collective": -0.9896365257560027,
+      "individual": -0.8938025424112526,
+      "expected": {
+        "score": -0.47,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5242938320483408,
+      "collective": 0.21406356303770835,
+      "individual": -0.8734668051046999,
+      "expected": {
+        "score": 0.15,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.3702286914882351,
+      "collective": 0.8726499133571997,
+      "individual": -0.4789400759673066,
+      "expected": {
+        "score": 0.35,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.7226322537944573,
+      "collective": 0.502872777845274,
+      "individual": -0.8892072045693713,
+      "expected": {
+        "score": 0.33,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.33836158222285495,
+      "collective": 0.5010742331364904,
+      "individual": -0.15981336205585417,
+      "expected": {
+        "score": 0.29,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.10767072760482088,
+      "collective": -0.014655553690233747,
+      "individual": 0.7191089192783755,
+      "expected": {
+        "score": 0.19,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.8704274274573338,
+      "collective": -0.14828789125727782,
+      "individual": -0.5554613175911443,
+      "expected": {
+        "score": 0.28,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.21792387536480484,
+      "collective": -0.32261219550596154,
+      "individual": -0.5724099785352479,
+      "expected": {
+        "score": -0.1,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.01744929046034327,
+      "collective": -0.9178633819636672,
+      "individual": -0.49676091811839007,
+      "expected": {
+        "score": -0.37,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.6431938707809269,
+      "collective": -0.2552230612411328,
+      "individual": -0.5414429219100421,
+      "expected": {
+        "score": 0.14,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5819470843160077,
+      "collective": -0.6443935845976598,
+      "individual": -0.1470122677343002,
+      "expected": {
+        "score": 0.07,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.4428846227173906,
+      "collective": -0.3575828142775621,
+      "individual": -0.2917185798276558,
+      "expected": {
+        "score": 0.06,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.22500763738600205,
+      "collective": 0.6604103534688688,
+      "individual": 0.4016727007093577,
+      "expected": {
+        "score": 0.39,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.34967315932664655,
+      "collective": 0.6745932979893663,
+      "individual": -0.7874478291706333,
+      "expected": {
+        "score": 0.22,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.6282874882021245,
+      "collective": -0.8092272912403973,
+      "individual": 0.4976506062568291,
+      "expected": {
+        "score": 0.17,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.3908649676744125,
+      "collective": -0.5800075674760048,
+      "individual": -0.49807376923137325,
+      "expected": {
+        "score": -0.08,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.7614717382310874,
+      "collective": -0.7434705486171334,
+      "individual": 0.9166221822945775,
+      "expected": {
+        "score": 0.34,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.5626141247419008,
+      "collective": 0.6006968925218836,
+      "individual": 0.8557491290586916,
+      "expected": {
+        "score": 0.63,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.06266968897976455,
+      "collective": 0.9741229645237781,
+      "individual": 0.26000160730150457,
+      "expected": {
+        "score": 0.38,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5315685871656015,
+      "collective": -0.7454151048222775,
+      "individual": -0.18183992667578308,
+      "expected": {
+        "score": 0.01,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.14622434827100483,
+      "collective": -0.21446505941614036,
+      "individual": -0.6414213503382458,
+      "expected": {
+        "score": -0.12,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.07269116943066833,
+      "collective": 0.5389700137323397,
+      "individual": 0.17480984389238619,
+      "expected": {
+        "score": 0.23,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.04861749980074703,
+      "collective": 0.45050412469186574,
+      "individual": 0.18849575659540796,
+      "expected": {
+        "score": 0.2,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.6982902653960456,
+      "collective": 0.7635612372372205,
+      "individual": -0.7574303207693753,
+      "expected": {
+        "score": 0.43,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.6837040064277935,
+      "collective": 0.07382482270284041,
+      "individual": -0.2708104341864461,
+      "expected": {
+        "score": 0.31,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.43669133466554955,
+      "collective": -0.06948075058186043,
+      "individual": 0.6769277701661114,
+      "expected": {
+        "score": 0.33,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.6057427584195968,
+      "collective": 0.5150543990686147,
+      "individual": 0.9552779782134477,
+      "expected": {
+        "score": 0.65,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.10508597126714525,
+      "collective": -0.6049028359910364,
+      "individual": -0.0699908671708136,
+      "expected": {
+        "score": -0.14,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.15461630518237823,
+      "collective": -0.36372320219114185,
+      "individual": 0.40724302723465566,
+      "expected": {
+        "score": 0.05,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.38994809769153227,
+      "collective": 0.21131767593010098,
+      "individual": 0.6023821887200547,
+      "expected": {
+        "score": 0.38,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.2509085525809279,
+      "collective": 0.9245074055187248,
+      "individual": 0.716963355135998,
+      "expected": {
+        "score": 0.55,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.3118227488377554,
+      "collective": -0.9124250675706012,
+      "individual": 0.9607371230138182,
+      "expected": {
+        "score": 0.07,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.7844120219176411,
+      "collective": -0.15828229231704394,
+      "individual": -0.2670177868440051,
+      "expected": {
+        "score": 0.29,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.6045450710260697,
+      "collective": 0.33879550940799064,
+      "individual": 0.6493919904289802,
+      "expected": {
+        "score": 0.53,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.3216248868020237,
+      "collective": -0.39485070393052846,
+      "individual": 0.4798188584606269,
+      "expected": {
+        "score": 0.14,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.5361410791398193,
+      "collective": 0.7117822127024411,
+      "individual": -0.46172904679068005,
+      "expected": {
+        "score": 0.39,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.12762450144119186,
+      "collective": 0.255181739609448,
+      "individual": 0.35248894203068004,
+      "expected": {
+        "score": 0.21,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.7388091325553913,
+      "collective": 0.016985034304048074,
+      "individual": -0.47874560189116155,
+      "expected": {
+        "score": 0.28,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.3831185483523336,
+      "collective": -0.33226125171249987,
+      "individual": 0.3881512614561162,
+      "expected": {
+        "score": 0.17,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.3891301730669676,
+      "collective": -0.04530581473990081,
+      "individual": -0.637571039168245,
+      "expected": {
+        "score": 0.05,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.7199242433971845,
+      "collective": 0.15607813319309782,
+      "individual": -0.8667346275993013,
+      "expected": {
+        "score": 0.23,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.8926664059603024,
+      "collective": 0.7528108134093172,
+      "individual": 0.5108016057344797,
+      "expected": {
+        "score": 0.77,
+        "tier": "confident_decision"
+      }
+    },
+    {
+      "confidence": 0.8272100365845068,
+      "collective": -0.5861238814980982,
+      "individual": -0.29565081487486333,
+      "expected": {
+        "score": 0.18,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.6256179026769343,
+      "collective": 0.04241146598151646,
+      "individual": 0.813938970116237,
+      "expected": {
+        "score": 0.49,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.4573193250632386,
+      "collective": -0.1531914429606429,
+      "individual": 0.42576671483195794,
+      "expected": {
+        "score": 0.27,
+        "tier": "proceed_only_if_necessary"
+      }
+    },
+    {
+      "confidence": 0.022851181475257,
+      "collective": -0.5223722840017724,
+      "individual": -0.2326540226717968,
+      "expected": {
+        "score": -0.19,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.5940276006372888,
+      "collective": 0.032033278312583846,
+      "individual": 0.7266272333998858,
+      "expected": {
+        "score": 0.45,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.17153518188603645,
+      "collective": 0.8208373674153058,
+      "individual": 0.8189951032169052,
+      "expected": {
+        "score": 0.5,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.14195665353425668,
+      "collective": -0.9103651863804374,
+      "individual": -0.3298485624482672,
+      "expected": {
+        "score": -0.27,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.10525981964723807,
+      "collective": 0.2720068007176515,
+      "individual": -0.14510961071396067,
+      "expected": {
+        "score": 0.11,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.23351936592439848,
+      "collective": 0.29021339268462687,
+      "individual": 0.6786523120873209,
+      "expected": {
+        "score": 0.34,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.299165077322738,
+      "collective": -0.8581702503741451,
+      "individual": 0.09414068016881716,
+      "expected": {
+        "score": -0.09,
+        "tier": "gather_more_data"
+      }
+    },
+    {
+      "confidence": 0.7922795407058483,
+      "collective": 0.6362636178199452,
+      "individual": 0.49488502736577766,
+      "expected": {
+        "score": 0.69,
+        "tier": "wary_but_secure"
+      }
+    },
+    {
+      "confidence": 0.9370886990058332,
+      "collective": 0.028859417238612295,
+      "individual": -0.41406705363034124,
+      "expected": {
+        "score": 0.39,
+        "tier": "confident_decision"
+      }
+    }
+  ],
+  "tier_coefficient": [
+    {
+      "tier": 0.0,
+      "exponent": 1.0,
+      "expected": 0.0
+    },
+    {
+      "tier": 0.0,
+      "exponent": 1.5,
+      "expected": 0.0
+    },
+    {
+      "tier": 0.0,
+      "exponent": 2.0,
+      "expected": 0.0
+    },
+    {
+      "tier": 0.0,
+      "exponent": 2.5,
+      "expected": 0.0
+    },
+    {
+      "tier": 0.5,
+      "exponent": 1.0,
+      "expected": 0.5
+    },
+    {
+      "tier": 0.5,
+      "exponent": 1.5,
+      "expected": 0.3535533905932738
+    },
+    {
+      "tier": 0.5,
+      "exponent": 2.0,
+      "expected": 0.25
+    },
+    {
+      "tier": 0.5,
+      "exponent": 2.5,
+      "expected": 0.1767766952966369
+    },
+    {
+      "tier": 1.0,
+      "exponent": 1.0,
+      "expected": 1.0
+    },
+    {
+      "tier": 1.0,
+      "exponent": 1.5,
+      "expected": 1.0
+    },
+    {
+      "tier": 1.0,
+      "exponent": 2.0,
+      "expected": 1.0
+    },
+    {
+      "tier": 1.0,
+      "exponent": 2.5,
+      "expected": 1.0
+    },
+    {
+      "tier": 2.0,
+      "exponent": 1.0,
+      "expected": 2.0
+    },
+    {
+      "tier": 2.0,
+      "exponent": 1.5,
+      "expected": 2.8284271247461903
+    },
+    {
+      "tier": 2.0,
+      "exponent": 2.0,
+      "expected": 4.0
+    },
+    {
+      "tier": 2.0,
+      "exponent": 2.5,
+      "expected": 5.656854249492381
+    },
+    {
+      "tier": 3.0,
+      "exponent": 1.0,
+      "expected": 3.0
+    },
+    {
+      "tier": 3.0,
+      "exponent": 1.5,
+      "expected": 5.196152422706632
+    },
+    {
+      "tier": 3.0,
+      "exponent": 2.0,
+      "expected": 9.0
+    },
+    {
+      "tier": 3.0,
+      "exponent": 2.5,
+      "expected": 15.588457268119896
+    }
+  ],
+  "group_impact": [
+    {
+      "group": {
+        "name": "a",
+        "size": 1,
+        "harm_tier": 0,
+        "benefit_tier": 2
+      },
+      "exponent": 1.0,
+      "expected": 2.0
+    },
+    {
+      "group": {
+        "name": "a",
+        "size": 1,
+        "harm_tier": 0,
+        "benefit_tier": 2
+      },
+      "exponent": 1.5,
+      "expected": 2.8284271247461903
+    },
+    {
+      "group": {
+        "name": "a",
+        "size": 1,
+        "harm_tier": 0,
+        "benefit_tier": 2
+      },
+      "exponent": 2.0,
+      "expected": 4.0
+    },
+    {
+      "group": {
+        "name": "b",
+        "size": 3,
+        "harm_tier": 1,
+        "benefit_tier": 0
+      },
+      "exponent": 1.0,
+      "expected": -3.0
+    },
+    {
+      "group": {
+        "name": "b",
+        "size": 3,
+        "harm_tier": 1,
+        "benefit_tier": 0
+      },
+      "exponent": 1.5,
+      "expected": -3.0
+    },
+    {
+      "group": {
+        "name": "b",
+        "size": 3,
+        "harm_tier": 1,
+        "benefit_tier": 0
+      },
+      "exponent": 2.0,
+      "expected": -3.0
+    },
+    {
+      "group": {
+        "name": "c",
+        "size": 2,
+        "harm_tier": 2,
+        "benefit_tier": 1
+      },
+      "exponent": 1.0,
+      "expected": -2.0
+    },
+    {
+      "group": {
+        "name": "c",
+        "size": 2,
+        "harm_tier": 2,
+        "benefit_tier": 1
+      },
+      "exponent": 1.5,
+      "expected": -3.6568542494923806
+    },
+    {
+      "group": {
+        "name": "c",
+        "size": 2,
+        "harm_tier": 2,
+        "benefit_tier": 1
+      },
+      "exponent": 2.0,
+      "expected": -6.0
+    },
+    {
+      "group": {
+        "name": "d",
+        "size": 0,
+        "harm_tier": 3,
+        "benefit_tier": 0
+      },
+      "exponent": 1.0,
+      "expected": -0.0
+    },
+    {
+      "group": {
+        "name": "d",
+        "size": 0,
+        "harm_tier": 3,
+        "benefit_tier": 0
+      },
+      "exponent": 1.5,
+      "expected": -0.0
+    },
+    {
+      "group": {
+        "name": "d",
+        "size": 0,
+        "harm_tier": 3,
+        "benefit_tier": 0
+      },
+      "exponent": 2.0,
+      "expected": -0.0
+    }
+  ],
+  "score_decision": [
+    {
+      "confidence": 0.1,
+      "groups": [
+        {
+          "name": "a",
+          "size": 1,
+          "harm_tier": 0,
+          "benefit_tier": 2
+        },
+        {
+          "name": "b",
+          "size": 3,
+          "harm_tier": 1,
+          "benefit_tier": 0
+        }
+      ],
+      "threshold": 2.0,
+      "exponent": 1.5,
+      "expected": {
+        "recommendation": "halt",
+        "reason": "Insufficient confidence in situational accuracy",
+        "confidence_tier": "gather_more_data",
+        "flagged_groups": []
+      }
+    },
+    {
+      "confidence": 0.9,
+      "groups": [
+        {
+          "name": "a",
+          "size": 1,
+          "harm_tier": 0,
+          "benefit_tier": 2
+        },
+        {
+          "name": "b",
+          "size": 3,
+          "harm_tier": 1,
+          "benefit_tier": 0
+        },
+        {
+          "name": "c",
+          "size": 2,
+          "harm_tier": 2,
+          "benefit_tier": 1
+        },
+        {
+          "name": "d",
+          "size": 0,
+          "harm_tier": 3,
+          "benefit_tier": 0
+        }
+      ],
+      "threshold": 2.0,
+      "exponent": 1.5,
+      "expected": {
+        "recommendation": "conditional_proceed",
+        "reason": "Proceed only with adequate mitigation for ['b', 'c']",
+        "confidence_tier": "confident_decision",
+        "flagged_groups": [
+          "b",
+          "c"
+        ],
+        "group_results": [
+          {
+            "name": "a",
+            "impact": 2.8284271247461903,
+            "harm_tier": 0,
+            "benefit_tier": 2,
+            "size": 1
+          },
+          {
+            "name": "b",
+            "impact": -3.0,
+            "harm_tier": 1,
+            "benefit_tier": 0,
+            "size": 3
+          },
+          {
+            "name": "c",
+            "impact": -3.6568542494923806,
+            "harm_tier": 2,
+            "benefit_tier": 1,
+            "size": 2
+          },
+          {
+            "name": "d",
+            "impact": -0.0,
+            "harm_tier": 3,
+            "benefit_tier": 0,
+            "size": 0
+          }
+        ]
+      }
+    },
+    {
+      "confidence": 0.9,
+      "groups": [
+        {
+          "name": "b",
+          "size": 3,
+          "harm_tier": 1,
+          "benefit_tier": 0
+        },
+        {
+          "name": "a",
+          "size": 1,
+          "harm_tier": 0,
+          "benefit_tier": 2
+        }
+      ],
+      "threshold": 0.5,
+      "exponent": 1.5,
+      "expected": {
+        "recommendation": "reject",
+        "reason": "Harm to ['b'] is disproportionate to collective benefit",
+        "confidence_tier": "confident_decision",
+        "flagged_groups": [
+          "b"
+        ],
+        "group_results": [
+          {
+            "name": "b",
+            "impact": -3.0,
+            "harm_tier": 1,
+            "benefit_tier": 0,
+            "size": 3
+          },
+          {
+            "name": "a",
+            "impact": 2.8284271247461903,
+            "harm_tier": 0,
+            "benefit_tier": 2,
+            "size": 1
+          }
+        ]
+      }
+    },
+    {
+      "confidence": 0.9,
+      "groups": [
+        {
+          "name": "b",
+          "size": 3,
+          "harm_tier": 1,
+          "benefit_tier": 0
+        }
+      ],
+      "threshold": 2.0,
+      "exponent": 1.5,
+      "expected": {
+        "recommendation": "reject",
+        "reason": "Harm to ['b'] is disproportionate to collective benefit",
+        "confidence_tier": "confident_decision",
+        "flagged_groups": [
+          "b"
+        ],
+        "group_results": [
+          {
+            "name": "b",
+            "impact": -3.0,
+            "harm_tier": 1,
+            "benefit_tier": 0,
+            "size": 3
+          }
+        ]
+      }
+    },
+    {
+      "confidence": 0.9,
+      "groups": [
+        {
+          "name": "a",
+          "size": 1,
+          "harm_tier": 0,
+          "benefit_tier": 2
+        }
+      ],
+      "threshold": 2.0,
+      "exponent": 1.5,
+      "expected": {
+        "recommendation": "full_proceed",
+        "reason": "Net benefit is proportionate across all groups",
+        "confidence_tier": "confident_decision",
+        "flagged_groups": [],
+        "group_results": [
+          {
+            "name": "a",
+            "impact": 2.8284271247461903,
+            "harm_tier": 0,
+            "benefit_tier": 2,
+            "size": 1
+          }
+        ]
+      }
+    },
+    {
+      "confidence": 0.6,
+      "groups": [
+        {
+          "name": "c",
+          "size": 2,
+          "harm_tier": 2,
+          "benefit_tier": 1
+        },
+        {
+          "name": "a",
+          "size": 1,
+          "harm_tier": 0,
+          "benefit_tier": 2
+        }
+      ],
+      "threshold": 2.0,
+      "exponent": 2.0,
+      "expected": {
+        "recommendation": "conditional_proceed",
+        "reason": "Proceed only with adequate mitigation for ['c']",
+        "confidence_tier": "wary_but_secure",
+        "flagged_groups": [
+          "c"
+        ],
+        "group_results": [
+          {
+            "name": "c",
+            "impact": -6.0,
+            "harm_tier": 2,
+            "benefit_tier": 1,
+            "size": 2
+          },
+          {
+            "name": "a",
+            "impact": 4.0,
+            "harm_tier": 0,
+            "benefit_tier": 2,
+            "size": 1
+          }
+        ]
+      }
+    },
+    {
+      "confidence": 0.6,
+      "groups": [
+        {
+          "name": "c",
+          "size": 2,
+          "harm_tier": 2,
+          "benefit_tier": 1
+        },
+        {
+          "name": "d",
+          "size": 0,
+          "harm_tier": 3,
+          "benefit_tier": 0
+        }
+      ],
+      "threshold": 2.0,
+      "exponent": 1.5,
+      "expected": {
+        "recommendation": "reject",
+        "reason": "Harm to ['c'] is disproportionate to collective benefit",
+        "confidence_tier": "wary_but_secure",
+        "flagged_groups": [
+          "c"
+        ],
+        "group_results": [
+          {
+            "name": "c",
+            "impact": -3.6568542494923806,
+            "harm_tier": 2,
+            "benefit_tier": 1,
+            "size": 2
+          },
+          {
+            "name": "d",
+            "impact": -0.0,
+            "harm_tier": 3,
+            "benefit_tier": 0,
+            "size": 0
+          }
+        ]
+      }
+    },
+    {
+      "confidence": 0.87,
+      "groups": [],
+      "threshold": 2.0,
+      "exponent": 1.5,
+      "expected": {
+        "recommendation": "full_proceed",
+        "reason": "Net benefit is proportionate across all groups",
+        "confidence_tier": "confident_decision",
+        "flagged_groups": [],
+        "group_results": []
+      }
+    }
+  ]
+}

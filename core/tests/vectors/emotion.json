@@ -1,0 +1,1628 @@
+{
+  "analyze": [
+    {
+      "current": "I was thinking about setting up some security cameras around my home.",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I was thinking about setting up some security cameras around my home.",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I was thinking about setting up some security cameras around my home.",
+      "previous": "short one",
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I am really worried there might be someone watching my house.",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I am really worried there might be someone watching my house.",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I am really worried there might be someone watching my house.",
+      "previous": "short one",
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "Someone is trying to break in right now what do I do",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "Someone is trying to break in right now what do I do",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?"
+      }
+    },
+    {
+      "current": "Someone is trying to break in right now what do I do",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?"
+      }
+    },
+    {
+      "current": "wait",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "wait",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?"
+      }
+    },
+    {
+      "current": "wait",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?"
+      }
+    },
+    {
+      "current": "stop",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "stop",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?"
+      }
+    },
+    {
+      "current": "stop",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?"
+      }
+    },
+    {
+      "current": "actually",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "actually",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?"
+      }
+    },
+    {
+      "current": "actually",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?"
+      }
+    },
+    {
+      "current": "the weather is nice today",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "the weather is nice today",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "the weather is nice today",
+      "previous": "short one",
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I feel stuck on this paperwork",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I feel stuck on this paperwork",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I feel stuck on this paperwork",
+      "previous": "short one",
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "there is a fire in the kitchen",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "there is a fire in the kitchen",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "there is a fire in the kitchen",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "they are following me down the street",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "they are following me down the street",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "they are following me down the street",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I need help choosing a bus route",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I need help choosing a bus route",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "I need help choosing a bus route",
+      "previous": "short one",
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "currently the door will not lock",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "currently the door will not lock",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "currently the door will not lock",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "hurry",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "hurry",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?"
+      }
+    },
+    {
+      "current": "hurry",
+      "previous": "short one",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?"
+      }
+    },
+    {
+      "current": "hello there friend",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "hello there friend",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?"
+      }
+    },
+    {
+      "current": "hello there friend",
+      "previous": "short one",
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "fire about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "inside my about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "difficult about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "immediately about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "worried about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "difficult about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "confused about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "help about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "ordinary about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "thinking about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "nervous about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "nervous about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "fire about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "scared about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "stuck about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "upset about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "confused about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "happening now about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "they are about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "bleeding about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "trouble about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "anxious about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "calm about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "ordinary about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "immediately about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "currently about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "lost about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "struggling about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "nervous about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "help about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "worried about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "currently about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "immediately about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "someone is about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "calm about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "nervous about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "emergency about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "they are about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "they are about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    },
+    {
+      "current": "anxious about the situation today",
+      "previous": null,
+      "expected": {
+        "state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null
+      }
+    }
+  ],
+  "outward": [
+    {
+      "current": "I was thinking about setting up some security cameras around my home.",
+      "previous": null,
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "I was thinking about setting up some security cameras around my home.",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "I was thinking about setting up some security cameras around my home.",
+      "previous": "short one",
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "I am really worried there might be someone watching my house.",
+      "previous": null,
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "I am really worried there might be someone watching my house.",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "I am really worried there might be someone watching my house.",
+      "previous": "short one",
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "Someone is trying to break in right now what do I do",
+      "previous": null,
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "Someone is trying to break in right now what do I do",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "Someone is trying to break in right now what do I do",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "wait",
+      "previous": null,
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "wait",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "wait",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "stop",
+      "previous": null,
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "stop",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "stop",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "actually",
+      "previous": null,
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "actually",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "actually",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "the weather is nice today",
+      "previous": null,
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "the weather is nice today",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "the weather is nice today",
+      "previous": "short one",
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "I feel stuck on this paperwork",
+      "previous": null,
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "I feel stuck on this paperwork",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "I feel stuck on this paperwork",
+      "previous": "short one",
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "there is a fire in the kitchen",
+      "previous": null,
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "there is a fire in the kitchen",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "there is a fire in the kitchen",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "they are following me down the street",
+      "previous": null,
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "they are following me down the street",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "they are following me down the street",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "I need help choosing a bus route",
+      "previous": null,
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "I need help choosing a bus route",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "I need help choosing a bus route",
+      "previous": "short one",
+      "expected": {
+        "user_state": "stressed",
+        "reasoning": "Elevated concern language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stressed",
+          "tone": "Calm and confident.",
+          "response_length": "Concise. Clear and complete but not lengthy.",
+          "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+          "elaboration": "Available if requested, not offered automatically.",
+          "pacing": "Steady and unhurried."
+        }
+      }
+    },
+    {
+      "current": "currently the door will not lock",
+      "previous": null,
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "currently the door will not lock",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "currently the door will not lock",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Immediate situation language detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "hurry",
+      "previous": null,
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "hurry",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Multiple tone shift indicators detected simultaneously.",
+        "clarification_needed": true,
+        "clarification_question": "What is going on? Are you okay?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "hurry",
+      "previous": "short one",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "hello there friend",
+      "previous": null,
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    },
+    {
+      "current": "hello there friend",
+      "previous": "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.",
+      "expected": {
+        "user_state": "crisis",
+        "reasoning": "Sudden change in communication pattern detected.",
+        "clarification_needed": true,
+        "clarification_question": "Are you dealing with something right now?",
+        "communication_style": {
+          "state": "crisis",
+          "tone": "Direct and decisive.",
+          "response_length": "Brief. Essential information only.",
+          "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+          "elaboration": "None unless explicitly requested.",
+          "pacing": "Immediate response priority."
+        }
+      }
+    },
+    {
+      "current": "hello there friend",
+      "previous": "short one",
+      "expected": {
+        "user_state": "stable",
+        "reasoning": "No elevated state indicators detected.",
+        "clarification_needed": false,
+        "clarification_question": null,
+        "communication_style": {
+          "state": "stable",
+          "tone": "Conversational and thorough.",
+          "response_length": "As needed. Full explanations offered naturally.",
+          "question_style": "Open and exploratory.",
+          "elaboration": "Offered freely.",
+          "pacing": "Natural conversation flow."
+        }
+      }
+    }
+  ],
+  "style": [
+    {
+      "state": "stable",
+      "expected": {
+        "state": "stable",
+        "tone": "Conversational and thorough.",
+        "response_length": "As needed. Full explanations offered naturally.",
+        "question_style": "Open and exploratory.",
+        "elaboration": "Offered freely.",
+        "pacing": "Natural conversation flow."
+      }
+    },
+    {
+      "state": "stressed",
+      "expected": {
+        "state": "stressed",
+        "tone": "Calm and confident.",
+        "response_length": "Concise. Clear and complete but not lengthy.",
+        "question_style": "Direct and purposeful. Brief explanation of why if needed.",
+        "elaboration": "Available if requested, not offered automatically.",
+        "pacing": "Steady and unhurried."
+      }
+    },
+    {
+      "state": "crisis",
+      "expected": {
+        "state": "crisis",
+        "tone": "Direct and decisive.",
+        "response_length": "Brief. Essential information only.",
+        "question_style": "Single, plain, immediate. Example: 'Are you safe right now?'",
+        "elaboration": "None unless explicitly requested.",
+        "pacing": "Immediate response priority."
+      }
+    },
+    {
+      "state": "unknown",
+      "expected": {
+        "state": "stable",
+        "tone": "Conversational and thorough.",
+        "response_length": "As needed. Full explanations offered naturally.",
+        "question_style": "Open and exploratory.",
+        "elaboration": "Offered freely.",
+        "pacing": "Natural conversation flow."
+      }
+    }
+  ]
+}

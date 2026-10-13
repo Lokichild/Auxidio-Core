@@ -1,0 +1,14 @@
+[package]
+name = "auxidio-harness"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+auxidio-core = { path = "../../core" }
+harness-core = { path = "../harness-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+rusqlite = { workspace = true }
+uuid = { workspace = true }
+toml = "0.8"
+ureq = { version = "2.10", features = ["json"] }

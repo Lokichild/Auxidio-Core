@@ -1,0 +1,598 @@
+{
+  "similarity": [
+    {
+      "stored": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "query": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "expected": 1.0
+    },
+    {
+      "stored": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "query": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder"
+      },
+      "expected": 1.0
+    },
+    {
+      "stored": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "query": {
+        "recurring_preparation_gap": false,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "expected": 0.75
+    },
+    {
+      "stored": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "query": {},
+      "expected": 0.0
+    },
+    {
+      "stored": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "query": {
+        "unrelated": 1
+      },
+      "expected": 0.0
+    },
+    {
+      "stored": {
+        "recurring_preparation_gap": true,
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "timing": "pre_departure"
+      },
+      "query": {
+        "timing": "pre_departure",
+        "solution_type": "departure_point_reminder",
+        "user_receptive_to_reminders": true,
+        "recurring_preparation_gap": true,
+        "extra": "x"
+      },
+      "expected": 0.8
+    },
+    {
+      "stored": {},
+      "query": {
+        "a": 1
+      },
+      "expected": 0.0
+    }
+  ],
+  "db_script": [
+    {
+      "op": "store_case",
+      "args": {
+        "description": "User repeatedly forgets writing implement before meetings",
+        "factors": {
+          "recurring_preparation_gap": true,
+          "solution_type": "departure_point_reminder",
+          "user_receptive_to_reminders": true,
+          "timing": "pre_departure"
+        },
+        "solution": "Remind user to bring pen as they prepare to leave for meeting",
+        "outcome_score": 0.9
+      },
+      "expected": {
+        "success": true,
+        "case_id": 1
+      }
+    },
+    {
+      "op": "store_case",
+      "args": {
+        "description": "User repeatedly forgets keys before leaving home",
+        "factors": {
+          "recurring_preparation_gap": true,
+          "solution_type": "departure_point_reminder",
+          "user_receptive_to_reminders": true,
+          "timing": "pre_departure"
+        },
+        "solution": "Remind user to check for keys as they prepare to leave",
+        "outcome_score": 0.85
+      },
+      "expected": {
+        "success": true,
+        "case_id": 2
+      }
+    },
+    {
+      "op": "store_case",
+      "args": {
+        "description": "User forgets medication at departure",
+        "factors": {
+          "recurring_preparation_gap": true,
+          "solution_type": "departure_point_reminder"
+        },
+        "solution": "Remind user about medication at the door",
+        "outcome_score": 0.7
+      },
+      "expected": {
+        "success": true,
+        "case_id": 3
+      }
+    },
+    {
+      "op": "find_similar_cases",
+      "args": {
+        "query": {
+          "recurring_preparation_gap": true,
+          "solution_type": "departure_point_reminder",
+          "user_receptive_to_reminders": true,
+          "timing": "pre_departure"
+        },
+        "min_similarity": 0.5,
+        "max_results": 5
+      },
+      "expected": [
+        {
+          "case_id": 1,
+          "description": "User repeatedly forgets writing implement before meetings",
+          "solution": "Remind user to bring pen as they prepare to leave for meeting",
+          "outcome_score": 0.9,
+          "similarity": 1.0,
+          "combined_score": 0.96,
+          "use_count": 1
+        },
+        {
+          "case_id": 2,
+          "description": "User repeatedly forgets keys before leaving home",
+          "solution": "Remind user to check for keys as they prepare to leave",
+          "outcome_score": 0.85,
+          "similarity": 1.0,
+          "combined_score": 0.94,
+          "use_count": 1
+        },
+        {
+          "case_id": 3,
+          "description": "User forgets medication at departure",
+          "solution": "Remind user about medication at the door",
+          "outcome_score": 0.7,
+          "similarity": 0.5,
+          "combined_score": 0.58,
+          "use_count": 1
+        }
+      ]
+    },
+    {
+      "op": "find_similar_cases",
+      "args": {
+        "query": {
+          "recurring_preparation_gap": true,
+          "solution_type": "departure_point_reminder"
+        },
+        "min_similarity": 0.5,
+        "max_results": 5
+      },
+      "expected": [
+        {
+          "case_id": 1,
+          "description": "User repeatedly forgets writing implement before meetings",
+          "solution": "Remind user to bring pen as they prepare to leave for meeting",
+          "outcome_score": 0.9,
+          "similarity": 1.0,
+          "combined_score": 0.96,
+          "use_count": 1
+        },
+        {
+          "case_id": 2,
+          "description": "User repeatedly forgets keys before leaving home",
+          "solution": "Remind user to check for keys as they prepare to leave",
+          "outcome_score": 0.85,
+          "similarity": 1.0,
+          "combined_score": 0.94,
+          "use_count": 1
+        },
+        {
+          "case_id": 3,
+          "description": "User forgets medication at departure",
+          "solution": "Remind user about medication at the door",
+          "outcome_score": 0.7,
+          "similarity": 1.0,
+          "combined_score": 0.88,
+          "use_count": 1
+        }
+      ]
+    },
+    {
+      "op": "find_similar_cases",
+      "args": {
+        "query": {
+          "recurring_preparation_gap": true,
+          "solution_type": "departure_point_reminder"
+        },
+        "min_similarity": 0.9,
+        "max_results": 2
+      },
+      "expected": [
+        {
+          "case_id": 1,
+          "description": "User repeatedly forgets writing implement before meetings",
+          "solution": "Remind user to bring pen as they prepare to leave for meeting",
+          "outcome_score": 0.9,
+          "similarity": 1.0,
+          "combined_score": 0.96,
+          "use_count": 1
+        },
+        {
+          "case_id": 2,
+          "description": "User repeatedly forgets keys before leaving home",
+          "solution": "Remind user to check for keys as they prepare to leave",
+          "outcome_score": 0.85,
+          "similarity": 1.0,
+          "combined_score": 0.94,
+          "use_count": 1
+        }
+      ]
+    },
+    {
+      "op": "find_similar_cases",
+      "args": {
+        "query": {
+          "unrelated": 1
+        },
+        "min_similarity": 0.5,
+        "max_results": 5
+      },
+      "expected": []
+    },
+    {
+      "op": "update_outcome",
+      "args": {
+        "case_id": 1,
+        "new_result": 0.95
+      },
+      "expected": {
+        "success": true,
+        "action": "updated",
+        "new_score": 0.93,
+        "use_count": 2
+      }
+    },
+    {
+      "op": "update_outcome",
+      "args": {
+        "case_id": 2,
+        "new_result": 0.1
+      },
+      "expected": {
+        "success": true,
+        "action": "updated",
+        "new_score": 0.47,
+        "use_count": 2
+      }
+    },
+    {
+      "op": "store_case",
+      "args": {
+        "description": "'; DROP TABLE cases; --",
+        "factors": {},
+        "solution": "malicious",
+        "outcome_score": 1.0
+      },
+      "expected": {
+        "success": false,
+        "severity": "logged",
+        "reason": "Input flagged for suspicious patterns. Attempt logged.",
+        "patterns_found": [
+          "--",
+          ";",
+          "DROP"
+        ]
+      }
+    },
+    {
+      "op": "store_case",
+      "args": {
+        "description": "'; DROP TABLE cases; --",
+        "factors": {},
+        "solution": "malicious",
+        "outcome_score": 1.0
+      },
+      "expected": {
+        "success": false,
+        "severity": "logged",
+        "reason": "Input flagged for suspicious patterns. Attempt logged.",
+        "patterns_found": [
+          "--",
+          ";",
+          "DROP"
+        ]
+      }
+    },
+    {
+      "op": "store_case",
+      "args": {
+        "description": "'; DROP TABLE cases; --",
+        "factors": {},
+        "solution": "malicious",
+        "outcome_score": 1.0
+      },
+      "expected": {
+        "success": false,
+        "severity": "escalated",
+        "reason": "Multiple unusual inputs detected. The registered user will be informed.",
+        "patterns_found": [
+          "--",
+          ";",
+          "DROP"
+        ]
+      }
+    },
+    {
+      "op": "check_injection_history",
+      "args": {
+        "window_minutes": 30
+      },
+      "expected": 3
+    },
+    {
+      "op": "get_security_log",
+      "args": {
+        "unreviewed_only": true
+      },
+      "expected": [
+        {
+          "id": 3,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        },
+        {
+          "id": 2,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        },
+        {
+          "id": 1,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        }
+      ]
+    },
+    {
+      "op": "display_security_report",
+      "args": {},
+      "expected": "Security Report: 3 unreviewed event(s) detected.\n\nTime: <TS>\nSuspicious input detected: '; DROP TABLE cases; --\nPatterns found: --, ;, DROP\n\nTime: <TS>\nSuspicious input detected: '; DROP TABLE cases; --\nPatterns found: --, ;, DROP\n\nTime: <TS>\nSuspicious input detected: '; DROP TABLE cases; --\nPatterns found: --, ;, DROP\n"
+    },
+    {
+      "op": "display_security_report",
+      "args": {},
+      "expected": "No new security events to report."
+    },
+    {
+      "op": "update_outcome",
+      "args": {
+        "case_id": 3,
+        "new_result": 0.0
+      },
+      "expected": {
+        "success": true,
+        "action": "updated",
+        "new_score": 0.35,
+        "use_count": 2
+      }
+    },
+    {
+      "op": "update_outcome",
+      "args": {
+        "case_id": 3,
+        "new_result": 0.0
+      },
+      "expected": {
+        "success": true,
+        "action": "updated",
+        "new_score": 0.23,
+        "use_count": 3
+      }
+    },
+    {
+      "op": "update_outcome",
+      "args": {
+        "case_id": 3,
+        "new_result": 0.0
+      },
+      "expected": {
+        "success": true,
+        "action": "updated",
+        "new_score": 0.17,
+        "use_count": 4
+      }
+    },
+    {
+      "op": "update_outcome",
+      "args": {
+        "case_id": 3,
+        "new_result": 0.0
+      },
+      "expected": {
+        "success": true,
+        "action": "removed",
+        "reason": "Outcome score 0.14 fell below threshold after 5 uses."
+      }
+    },
+    {
+      "op": "find_similar_cases",
+      "args": {
+        "query": {
+          "recurring_preparation_gap": true,
+          "solution_type": "departure_point_reminder"
+        },
+        "min_similarity": 0.5,
+        "max_results": 5
+      },
+      "expected": [
+        {
+          "case_id": 1,
+          "description": "User repeatedly forgets writing implement before meetings",
+          "solution": "Remind user to bring pen as they prepare to leave for meeting",
+          "outcome_score": 0.93,
+          "similarity": 1.0,
+          "combined_score": 0.97,
+          "use_count": 2
+        },
+        {
+          "case_id": 2,
+          "description": "User repeatedly forgets keys before leaving home",
+          "solution": "Remind user to check for keys as they prepare to leave",
+          "outcome_score": 0.47,
+          "similarity": 1.0,
+          "combined_score": 0.79,
+          "use_count": 2
+        }
+      ]
+    },
+    {
+      "op": "update_outcome",
+      "args": {
+        "case_id": 999,
+        "new_result": 0.5
+      },
+      "expected": {
+        "success": false,
+        "reason": "Case not found."
+      }
+    },
+    {
+      "op": "store_case",
+      "args": {
+        "description": "'; DROP TABLE cases; --",
+        "factors": {},
+        "solution": "malicious",
+        "outcome_score": 1.0
+      },
+      "expected": {
+        "success": false,
+        "severity": "escalated",
+        "reason": "Multiple unusual inputs detected. The registered user will be informed.",
+        "patterns_found": [
+          "--",
+          ";",
+          "DROP"
+        ]
+      }
+    },
+    {
+      "op": "get_security_log",
+      "args": {
+        "unreviewed_only": true
+      },
+      "expected": [
+        {
+          "id": 4,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        }
+      ]
+    },
+    {
+      "op": "mark_security_log_reviewed",
+      "args": {
+        "entry_ids": [
+          4
+        ]
+      },
+      "expected": {
+        "success": true,
+        "marked_reviewed": 1
+      }
+    },
+    {
+      "op": "get_security_log",
+      "args": {
+        "unreviewed_only": false
+      },
+      "expected": [
+        {
+          "id": 4,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        },
+        {
+          "id": 3,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        },
+        {
+          "id": 2,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        },
+        {
+          "id": 1,
+          "attempted_input": "'; DROP TABLE cases; --",
+          "patterns_found": [
+            "--",
+            ";",
+            "DROP"
+          ],
+          "timestamp": "<TS>"
+        }
+      ]
+    }
+  ]
+}
