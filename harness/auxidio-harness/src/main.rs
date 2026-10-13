@@ -18,6 +18,10 @@ fn main() {
         }
     };
 
+    if let Err(err) = auxidio_harness::classify::seed_default_classes(&conn) {
+        output::note(&format!("could not seed situation classes: {}", err));
+    }
+
     let summarizer: Option<auxidio_harness::session::SharedSummarizer> = if config.context.enabled {
         Some(std::sync::Arc::new(OllamaClient::new(
             &config.ollama.url,
@@ -102,7 +106,7 @@ fn main() {
             Ok(_) => {}
             Err(_) => break,
         }
-        let input = line.trim();
+        let input = line.trim().to_string();
         if input.is_empty() {
             continue;
         }
@@ -117,8 +121,64 @@ fn main() {
             continue;
         }
 
-        match manager.process_turn(input, &model, verifier.as_ref().map(|v| v as &dyn auxidio_harness::verifier::VerifierClient)) {
-            Ok(response) => output::deliver(&response),
+        let turn_input = if let Some(secs) = input.strip_prefix("/talk") {
+            if !config.audio.enabled {
+                output::note("audio input is disabled ([audio] enabled = true to use it)");
+                continue;
+            }
+            let seconds: u32 = secs.trim().parse().unwrap_or(5);
+            let wav = std::env::temp_dir()
+                .join(format!("auxidio_take_{}.wav", std::process::id()));
+            let wav_path = wav.to_string_lossy().to_string();
+            let transcript = match auxidio_harness::sensors::audio::record_to_wav(
+                &config.audio.record_cmd,
+                &wav_path,
+                seconds,
+            ) {
+                Ok(()) => auxidio_harness::sensors::audio::transcribe(
+                    &config.audio.whisper_cmd,
+                    &wav_path,
+                    &config.audio.whisper_model,
+                ),
+                Err(err) => Err(err),
+            };
+            let _ = std::fs::remove_file(&wav);
+            match transcript {
+                Ok(text) if !text.is_empty() => {
+                    println!("You said: {}", text);
+                    text
+                }
+                Ok(_) => {
+                    output::note("no speech detected");
+                    continue;
+                }
+                Err(err) => {
+                    output::note(&format!("audio path failed: {}", err));
+                    continue;
+                }
+            }
+        } else {
+            input
+        };
+
+        match manager.process_turn(
+            &turn_input,
+            &model,
+            verifier.as_ref().map(|v| v as &dyn auxidio_harness::verifier::VerifierClient),
+        ) {
+            Ok(response) => {
+                output::deliver(&response);
+                if config.tts.enabled {
+                    if let Err(err) = output::speak(
+                        &config.tts.piper_cmd,
+                        &config.tts.play_cmd,
+                        &config.tts.voice,
+                        &response,
+                    ) {
+                        output::note(&format!("speech output failed: {}", err));
+                    }
+                }
+            }
             Err(err) => output::note(&format!("turn failed: {}", err)),
         }
     }

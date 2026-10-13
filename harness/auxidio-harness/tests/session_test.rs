@@ -18,7 +18,11 @@ fn turn_stores_episodes_and_context() {
     let config = test_config();
     let mut manager = SessionManager::start_or_resume(conn, &config, None).unwrap();
 
-    let model = ScriptedClient::new(vec!["You could remind yourself at the door.".to_string()]);
+    let model = ScriptedClient::new(vec![
+        r#"{"class_id": "routine", "label": null, "confidence": 0.6}"#.to_string(),
+        r#"{"confidence_rating": 0.8, "net_collective_impact": 0.3, "net_individual_impact": 0.5}"#.to_string(),
+        "You could remind yourself at the door.".to_string(),
+    ]);
     let response = manager.process_turn("I keep forgetting my keys", &model, None).unwrap();
     assert_eq!(response, "You could remind yourself at the door.");
     assert_eq!(manager.context_len(), 2);
@@ -35,12 +39,29 @@ fn clarification_short_circuits_the_model() {
     let mut manager = SessionManager::start_or_resume(conn, &config, None).unwrap();
 
     let long_previous = "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.";
-    manager.process_turn(long_previous, &ScriptedClient::new(vec!["ok".into()]), None).unwrap();
+    manager
+        .process_turn(
+            long_previous,
+            &ScriptedClient::new(vec![
+                r#"{"confidence_rating": 0.8, "net_collective_impact": 0.0, "net_individual_impact": 0.0}"#.to_string(),
+                "ok".into(),
+            ]),
+            None,
+        )
+        .unwrap();
 
-    let model = ScriptedClient::new(vec!["should never be used".to_string()]);
+    // "wait" after a long turn is a tone-shift crisis: the classifier may look,
+    // but the generation model must never run on a clarification turn.
+    let model = ScriptedClient::new(vec!["should never be used for generation".to_string()]);
     let response = manager.process_turn("wait", &model, None).unwrap();
     assert_eq!(response, "What is going on? Are you okay?");
-    assert!(model.calls.lock().unwrap().is_empty());
+    let calls = model.calls.lock().unwrap();
+    assert!(
+        calls
+            .iter()
+            .all(|call| call[0].content.starts_with("You are a situation classifier")),
+        "only the classifier may run on a clarification turn"
+    );
 }
 
 #[test]
@@ -51,6 +72,8 @@ fn verify_loop_feeds_results_back() {
 
     let fenced = "Let me check.\n```verify\n{\"claim\": \"3 * 14.99 + 6.50 = 49.99\", \"script\": \"print(round(3 * 14.99 + 6.50, 2))\"}\n```\n";
     let model = ScriptedClient::new(vec![
+        r#"{"class_id": null, "label": "arithmetic", "confidence": 0.9}"#.to_string(),
+        r#"{"confidence_rating": 0.7, "net_collective_impact": 0.0, "net_individual_impact": 0.1}"#.to_string(),
         fenced.to_string(),
         "The total is 51.47, not 49.99.".to_string(),
     ]);
@@ -67,8 +90,9 @@ fn verify_loop_feeds_results_back() {
         .unwrap();
     assert_eq!(response, "The total is 51.47, not 49.99.");
     assert_eq!(verifier.calls.borrow().len(), 1);
-    assert_eq!(model.calls.lock().unwrap().len(), 2);
-    let second_call = &model.calls.lock().unwrap()[1];
+    // calls: classifier, weight extraction, generation round 1, generation round 2
+    assert_eq!(model.calls.lock().unwrap().len(), 4);
+    let second_call = &model.calls.lock().unwrap()[3];
     let injected = second_call.last().unwrap().content.clone();
     assert!(injected.contains("51.47"), "injection was: {}", injected);
 }

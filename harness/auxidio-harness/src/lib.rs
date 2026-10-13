@@ -1,3 +1,4 @@
+pub mod classify;
 pub mod config;
 pub mod context;
 pub mod memory;
@@ -9,3 +10,4 @@ pub mod session;
 pub mod selfmon;
 pub mod tools;
 pub mod verifier;
+pub mod weights;

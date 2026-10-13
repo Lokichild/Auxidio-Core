@@ -122,12 +122,13 @@ impl SessionManager {
             }
         }
 
+        let class = crate::classify::classify(&self.conn, Some(model), user_input);
         let episode_id = memory::append_episode(
             &self.conn,
             &self.session_id,
             "turn_input",
             &json!({ "text": user_input }),
-            None,
+            Some(&class.class_id),
         )?;
         self.last_episode_id = episode_id;
 
@@ -143,7 +144,29 @@ impl SessionManager {
                 .unwrap_or("Could you tell me a little more?")
                 .to_string()
         } else {
-            let system = self.system_prompt(&outward, user_input)?;
+            let user_state = outward["user_state"].as_str().unwrap_or("stable");
+            let case_context = self.case_context(user_state, user_input)?;
+            let inputs = crate::weights::extract_decision_inputs(
+                model,
+                user_input,
+                user_state,
+                &case_context,
+            )
+            .unwrap_or_else(|_| crate::weights::conservative_inputs());
+            let assessment = auxidio_core::decision::evaluate_decision(
+                inputs.confidence_rating,
+                inputs.net_collective_impact,
+                inputs.net_individual_impact,
+            );
+            let top_problem = crate::queue::ranked_open_problems(
+                &self.conn,
+                self.config.queue.target_stress_sum,
+                self.config.queue.local_mvt,
+            )
+            .first()
+            .cloned();
+            let system =
+                self.system_prompt(&outward, &case_context, &assessment, top_problem.as_ref());
             let mut history = self.context.clone();
             history.push(ChatMessage::user(user_input));
             match tools::generate_with_verification(
@@ -221,10 +244,7 @@ impl SessionManager {
         Ok(self.conn)
     }
 
-    fn system_prompt(&self, outward: &Value, user_input: &str) -> rusqlite::Result<String> {
-        let style = &outward["communication_style"];
-        let user_state = outward["user_state"].as_str().unwrap_or("stable");
-
+    fn case_context(&self, user_state: &str, user_input: &str) -> rusqlite::Result<String> {
         let query = json!({
             "user_state": user_state,
             "input_length": if user_input.split_whitespace().count() < 10 { "short" } else { "long" }
@@ -232,23 +252,42 @@ impl SessionManager {
         let query_map = query.as_object().cloned().unwrap_or_default();
         let similar =
             auxidio_core::cases::find_similar_cases(&self.conn, &query_map, 0.5, 5)?;
-        let case_context = match similar.first() {
+        Ok(match similar.first() {
             Some(case) => format!(
                 "A similar situation was handled successfully before: {} (confidence: {})",
                 case["solution"].as_str().unwrap_or_default(),
                 case["outcome_score"].as_f64().unwrap_or(0.0)
             ),
             None => String::new(),
-        };
+        })
+    }
 
-        Ok(format!(
-            "You are {name}, a personal reasoning and decision-support companion. You help your user think through decisions clearly and honestly.\n\nCurrent communication guidelines:\n- Tone: {tone}\n- Response length: {length}\n- Elaboration: {elaboration}\n\n{case_context}\n\nRespond directly to the user's input following the communication guidelines above. Do not explain your reasoning process. Just respond helpfully and naturally.\n\nIf your response depends on arithmetic, emit a fenced verify block with a claim and a Python script that prints exactly one numeric line, then wait for verification.",
+    fn system_prompt(
+        &self,
+        outward: &Value,
+        case_context: &str,
+        assessment: &auxidio_core::decision::DecisionResult,
+        top_problem: Option<&(crate::memory::ProblemRecord, f64)>,
+    ) -> String {
+        let style = &outward["communication_style"];
+        let concern = match top_problem {
+            Some((problem, score)) => format!(
+                "Highest-priority open concern right now: {} (priority score {:.2}).",
+                problem.description, score
+            ),
+            None => String::new(),
+        };
+        format!(
+            "You are {name}, a personal reasoning and decision-support companion. You help your user think through decisions clearly and honestly.\n\nCurrent communication guidelines:\n- Tone: {tone}\n- Response length: {length}\n- Elaboration: {elaboration}\n\nDecision engine assessment:\n- Confidence tier: {tier}\n- Decision score: {score}\n\n{case_context}\n{concern}\n\nRespond directly to the user's input following the communication guidelines above. Do not explain your reasoning process. Just respond helpfully and naturally.\n\nIf your response depends on arithmetic, emit a fenced verify block with a claim and a Python script that prints exactly one numeric line, then wait for verification.",
             name = self.config.user_name,
             tone = style["tone"].as_str().unwrap_or("Conversational and thorough."),
             length = style["response_length"].as_str().unwrap_or("As needed."),
             elaboration = style["elaboration"].as_str().unwrap_or("Offered freely."),
+            tier = assessment.tier,
+            score = assessment.score,
             case_context = case_context,
-        ))
+            concern = concern,
+        )
     }
 }
 

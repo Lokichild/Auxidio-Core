@@ -20,6 +20,35 @@ pub struct HarnessConfig {
     pub context: ContextConfig,
     #[serde(default)]
     pub audio: AudioSettings,
+    #[serde(default)]
+    pub tts: TtsConfig,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct TtsConfig {
+    #[serde(default)]
+    pub enabled: bool,
+    #[serde(default = "crate::output::default_piper_cmd")]
+    pub piper_cmd: Vec<String>,
+    #[serde(default = "crate::output::default_play_cmd")]
+    pub play_cmd: Vec<String>,
+    #[serde(default = "default_voice")]
+    pub voice: String,
+}
+
+impl Default for TtsConfig {
+    fn default() -> Self {
+        Self {
+            enabled: false,
+            piper_cmd: crate::output::default_piper_cmd(),
+            play_cmd: crate::output::default_play_cmd(),
+            voice: default_voice(),
+        }
+    }
+}
+
+fn default_voice() -> String {
+    "~/piper_voices/en_US-lessac-medium.onnx".to_string()
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
@@ -154,6 +183,7 @@ impl Default for HarnessConfig {
             queue: QueueConfig::default(),
             context: ContextConfig::default(),
             audio: AudioSettings::default(),
+            tts: TtsConfig::default(),
         }
     }
 }
