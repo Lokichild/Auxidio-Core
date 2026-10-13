@@ -2,7 +2,7 @@ use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 
-pub const SCHEMA_VERSION: i64 = 1;
+pub const SCHEMA_VERSION: i64 = 2;
 
 pub fn open_memory(path: &str) -> rusqlite::Result<Connection> {
     let conn = Connection::open(path)?;
@@ -129,8 +129,113 @@ pub fn migrate(conn: &Connection) -> rusqlite::Result<()> {
         );
         COMMIT;",
     )?;
+    if version < 2 {
+        conn.execute_batch(
+            "BEGIN IMMEDIATE;
+            CREATE TABLE IF NOT EXISTS component_health (
+                component_id TEXT PRIMARY KEY,
+                health_estimate REAL NOT NULL,
+                evidence_json TEXT NOT NULL,
+                expected_action TEXT NOT NULL,
+                updated_at TEXT NOT NULL
+            );
+            CREATE TABLE IF NOT EXISTS maintenance_requests (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                component_id TEXT NOT NULL,
+                kind TEXT NOT NULL,
+                priority TEXT NOT NULL,
+                request_text TEXT NOT NULL,
+                evidence_json TEXT NOT NULL,
+                status TEXT NOT NULL DEFAULT 'open',
+                defer_count INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL
+            );
+            COMMIT;",
+        )?;
+    }
     conn.pragma_update(None, "user_version", SCHEMA_VERSION)?;
     Ok(())
+}
+
+#[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]
+pub struct ProblemRecord {
+    pub problem_id: i64,
+    pub description: String,
+    pub class_id: Option<String>,
+    pub original_value: f64,
+    pub current_value: f64,
+    pub maslow_level: i64,
+    pub m_impact: i64,
+    pub recurrence_count: i64,
+    pub status: String,
+}
+
+pub fn add_problem_record(
+    conn: &Connection,
+    description: &str,
+    value: f64,
+    maslow_level: i64,
+    m_impact: i64,
+) -> rusqlite::Result<i64> {
+    conn.execute(
+        "INSERT INTO problem_records (description, original_value, current_value, maslow_level, m_impact, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+        params![description, value, value, maslow_level, m_impact, now_iso()],
+    )?;
+    Ok(conn.last_insert_rowid())
+}
+
+pub fn open_problem_records(conn: &Connection) -> rusqlite::Result<Vec<ProblemRecord>> {
+    let mut stmt = conn.prepare(
+        "SELECT problem_id, description, class_id, original_value, current_value, maslow_level, m_impact, recurrence_count, status FROM problem_records WHERE status = 'open' ORDER BY problem_id ASC",
+    )?;
+    let rows = stmt.query_map([], |row| {
+        Ok(ProblemRecord {
+            problem_id: row.get(0)?,
+            description: row.get(1)?,
+            class_id: row.get(2)?,
+            original_value: row.get(3)?,
+            current_value: row.get(4)?,
+            maslow_level: row.get(5)?,
+            m_impact: row.get(6)?,
+            recurrence_count: row.get(7)?,
+            status: row.get(8)?,
+        })
+    })?;
+    rows.collect()
+}
+
+pub fn add_maintenance_request(
+    conn: &Connection,
+    component_id: &str,
+    kind: &str,
+    priority: &str,
+    request_text: &str,
+    evidence: &Value,
+) -> rusqlite::Result<i64> {
+    conn.execute(
+        "INSERT INTO maintenance_requests (component_id, kind, priority, request_text, evidence_json, created_at) VALUES (?, ?, ?, ?, ?, ?)",
+        params![component_id, kind, priority, request_text, auxidio_core::py_dumps(evidence), now_iso()],
+    )?;
+    Ok(conn.last_insert_rowid())
+}
+
+pub fn open_maintenance_requests(conn: &Connection) -> rusqlite::Result<Vec<(i64, String, String, String)>> {
+    let mut stmt = conn.prepare(
+        "SELECT id, component_id, priority, request_text FROM maintenance_requests WHERE status = 'open' ORDER BY id ASC",
+    )?;
+    let rows = stmt.query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?, row.get(3)?)))?;
+    rows.collect()
+}
+
+pub fn latest_telemetry(conn: &Connection, metric: &str) -> rusqlite::Result<Option<f64>> {
+    let mut stmt = conn.prepare(
+        "SELECT value FROM self_telemetry WHERE metric = ? ORDER BY id DESC LIMIT 1",
+    )?;
+    let mut rows = stmt.query(params![metric])?;
+    match rows.next()? {
+        Some(row) => Ok(Some(row.get(0)?)),
+        None => Ok(None),
+    }
 }
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, Debug)]

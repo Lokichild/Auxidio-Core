@@ -1,12 +1,26 @@
+use std::sync::Arc;
+
 use harness_core::ChatMessage;
 use rusqlite::Connection;
 use serde_json::{json, Value};
 
 use crate::config::HarnessConfig;
+use crate::context::ContextManager;
 use crate::memory;
 use crate::model::{ModelClient, ModelError};
 use crate::tools;
 use crate::verifier::VerifierClient;
+
+fn context_manager_for(config: &HarnessConfig) -> Option<Arc<ContextManager>> {
+    if config.context.enabled {
+        Some(ContextManager::new(
+            config.context.budget_messages,
+            config.context.keep_recent_messages,
+        ))
+    } else {
+        None
+    }
+}
 
 pub struct SessionManager {
     conn: Connection,
@@ -17,10 +31,18 @@ pub struct SessionManager {
     turns_since_checkpoint: u32,
     previous_input: Option<String>,
     resumed: bool,
+    context_manager: Option<Arc<ContextManager>>,
+    summarizer: Option<Arc<dyn ModelClient + Send + Sync>>,
 }
 
+pub type SharedSummarizer = Arc<dyn ModelClient + Send + Sync>;
+
 impl SessionManager {
-    pub fn start_or_resume(conn: Connection, config: &HarnessConfig) -> rusqlite::Result<Self> {
+    pub fn start_or_resume(
+        conn: Connection,
+        config: &HarnessConfig,
+        summarizer: Option<SharedSummarizer>,
+    ) -> rusqlite::Result<Self> {
         if let Some(session_id) = memory::open_session_id(&conn)? {
             let checkpoint = memory::load_checkpoint(&conn, &session_id)?;
             let (mut context, mut last_episode_id) = match &checkpoint {
@@ -52,6 +74,8 @@ impl SessionManager {
                 turns_since_checkpoint: 0,
                 previous_input,
                 resumed: true,
+                context_manager: context_manager_for(config),
+                summarizer,
             };
             manager.context = trim_context(context, config.session.context_turns);
             Ok(manager)
@@ -66,6 +90,8 @@ impl SessionManager {
                 turns_since_checkpoint: 0,
                 previous_input: None,
                 resumed: false,
+                context_manager: context_manager_for(config),
+                summarizer,
             })
         }
     }
@@ -88,6 +114,14 @@ impl SessionManager {
         model: &dyn ModelClient,
         verifier: Option<&dyn VerifierClient>,
     ) -> rusqlite::Result<String> {
+        // Safe point: a background compaction finished since the last turn is
+        // swapped in here, between turns, never mid-response.
+        if let Some(manager) = &self.context_manager {
+            if let Some(compacted) = manager.take_compacted() {
+                self.context = compacted;
+            }
+        }
+
         let episode_id = memory::append_episode(
             &self.conn,
             &self.session_id,
@@ -146,6 +180,10 @@ impl SessionManager {
             std::mem::take(&mut self.context),
             self.config.session.context_turns,
         );
+
+        if let (Some(manager), Some(summarizer)) = (&self.context_manager, &self.summarizer) {
+            manager.maybe_compact(self.context.clone(), summarizer.clone());
+        }
 
         self.turns_since_checkpoint += 1;
         if self.turns_since_checkpoint >= self.config.session.checkpoint_interval {

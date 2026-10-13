@@ -4,7 +4,6 @@ use auxidio_harness::model::ScriptedClient;
 use auxidio_harness::session::SessionManager;
 use auxidio_harness::verifier::ScriptedVerifier;
 use harness_core::{VerifyResult, VerifyStatus};
-use serde_json::json;
 
 fn test_config() -> HarnessConfig {
     let mut config = HarnessConfig::default();
@@ -17,7 +16,7 @@ fn test_config() -> HarnessConfig {
 fn turn_stores_episodes_and_context() {
     let conn = memory::open_memory_in_memory().unwrap();
     let config = test_config();
-    let mut manager = SessionManager::start_or_resume(conn, &config).unwrap();
+    let mut manager = SessionManager::start_or_resume(conn, &config, None).unwrap();
 
     let model = ScriptedClient::new(vec!["You could remind yourself at the door.".to_string()]);
     let response = manager.process_turn("I keep forgetting my keys", &model, None).unwrap();
@@ -33,7 +32,7 @@ fn turn_stores_episodes_and_context() {
 fn clarification_short_circuits_the_model() {
     let conn = memory::open_memory_in_memory().unwrap();
     let config = test_config();
-    let mut manager = SessionManager::start_or_resume(conn, &config).unwrap();
+    let mut manager = SessionManager::start_or_resume(conn, &config, None).unwrap();
 
     let long_previous = "I was thinking about setting up some security cameras around my home and wanted to discuss the best placement options for covering all entry points.";
     manager.process_turn(long_previous, &ScriptedClient::new(vec!["ok".into()]), None).unwrap();
@@ -41,14 +40,14 @@ fn clarification_short_circuits_the_model() {
     let model = ScriptedClient::new(vec!["should never be used".to_string()]);
     let response = manager.process_turn("wait", &model, None).unwrap();
     assert_eq!(response, "What is going on? Are you okay?");
-    assert!(model.calls.borrow().is_empty());
+    assert!(model.calls.lock().unwrap().is_empty());
 }
 
 #[test]
 fn verify_loop_feeds_results_back() {
     let conn = memory::open_memory_in_memory().unwrap();
     let config = test_config();
-    let mut manager = SessionManager::start_or_resume(conn, &config).unwrap();
+    let mut manager = SessionManager::start_or_resume(conn, &config, None).unwrap();
 
     let fenced = "Let me check.\n```verify\n{\"claim\": \"3 * 14.99 + 6.50 = 49.99\", \"script\": \"print(round(3 * 14.99 + 6.50, 2))\"}\n```\n";
     let model = ScriptedClient::new(vec![
@@ -68,8 +67,8 @@ fn verify_loop_feeds_results_back() {
         .unwrap();
     assert_eq!(response, "The total is 51.47, not 49.99.");
     assert_eq!(verifier.calls.borrow().len(), 1);
-    assert_eq!(model.calls.borrow().len(), 2);
-    let second_call = &model.calls.borrow()[1];
+    assert_eq!(model.calls.lock().unwrap().len(), 2);
+    let second_call = &model.calls.lock().unwrap()[1];
     let injected = second_call.last().unwrap().content.clone();
     assert!(injected.contains("51.47"), "injection was: {}", injected);
 }
@@ -89,7 +88,7 @@ fn context_trims_and_resume_replays() {
     let path = temp_db_path("resume");
     let conn = memory::open_memory(&path).unwrap();
     let config = test_config();
-    let mut manager = SessionManager::start_or_resume(conn, &config).unwrap();
+    let mut manager = SessionManager::start_or_resume(conn, &config, None).unwrap();
     let session_id = manager.session_id().to_string();
 
     let model = ScriptedClient::new(vec![
@@ -113,7 +112,7 @@ fn context_trims_and_resume_replays() {
         rusqlite::params![session_id],
     )
     .unwrap();
-    let resumed = SessionManager::start_or_resume(conn, &config).unwrap();
+    let resumed = SessionManager::start_or_resume(conn, &config, None).unwrap();
     assert!(resumed.resumed());
     assert!(resumed.context_len() > 0 && resumed.context_len() <= 4);
     let _ = resumed.finish();
@@ -134,7 +133,7 @@ fn model_failure_degrades_honestly() {
 
     let conn = memory::open_memory_in_memory().unwrap();
     let config = test_config();
-    let mut manager = SessionManager::start_or_resume(conn, &config).unwrap();
+    let mut manager = SessionManager::start_or_resume(conn, &config, None).unwrap();
     let response = manager.process_turn("hello there", &FailingClient, None).unwrap();
     assert!(response.contains("could not reach my reasoning model"));
     assert!(response.contains("connection refused"));

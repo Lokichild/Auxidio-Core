@@ -12,6 +12,104 @@ pub struct HarnessConfig {
     pub session: SessionConfig,
     #[serde(default)]
     pub verify: VerifyConfig,
+    #[serde(default)]
+    pub selfmon: SelfmonConfig,
+    #[serde(default)]
+    pub queue: QueueConfig,
+    #[serde(default)]
+    pub context: ContextConfig,
+    #[serde(default)]
+    pub audio: AudioSettings,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct SelfmonConfig {
+    #[serde(default = "default_true")]
+    pub enabled: bool,
+    #[serde(default = "default_selfmon_interval")]
+    pub interval_secs: u64,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct QueueConfig {
+    #[serde(default = "default_target_stress_sum")]
+    pub target_stress_sum: f64,
+    #[serde(default = "default_local_mvt")]
+    pub local_mvt: f64,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct ContextConfig {
+    #[serde(default = "default_true")]
+    pub enabled: bool,
+    #[serde(default = "default_budget_messages")]
+    pub budget_messages: usize,
+    #[serde(default = "default_keep_recent")]
+    pub keep_recent_messages: usize,
+    #[serde(default = "default_summarizer_model")]
+    pub summarizer_model: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct AudioSettings {
+    #[serde(default)]
+    pub enabled: bool,
+    #[serde(default = "crate::sensors::audio::default_record_cmd")]
+    pub record_cmd: Vec<String>,
+    #[serde(default = "crate::sensors::audio::default_whisper_cmd")]
+    pub whisper_cmd: Vec<String>,
+    #[serde(default = "default_model")]
+    pub whisper_model: String,
+}
+
+impl Default for SelfmonConfig {
+    fn default() -> Self {
+        Self { enabled: default_true(), interval_secs: default_selfmon_interval() }
+    }
+}
+impl Default for QueueConfig {
+    fn default() -> Self {
+        Self { target_stress_sum: default_target_stress_sum(), local_mvt: default_local_mvt() }
+    }
+}
+impl Default for ContextConfig {
+    fn default() -> Self {
+        Self {
+            enabled: default_true(),
+            budget_messages: default_budget_messages(),
+            keep_recent_messages: default_keep_recent(),
+            summarizer_model: default_summarizer_model(),
+        }
+    }
+}
+impl Default for AudioSettings {
+    fn default() -> Self {
+        Self {
+            enabled: false,
+            record_cmd: crate::sensors::audio::default_record_cmd(),
+            whisper_cmd: crate::sensors::audio::default_whisper_cmd(),
+            whisper_model: default_model(),
+        }
+    }
+}
+
+fn default_selfmon_interval() -> u64 {
+    30
+}
+fn default_target_stress_sum() -> f64 {
+    1.0
+}
+fn default_local_mvt() -> f64 {
+    10.0
+}
+fn default_budget_messages() -> usize {
+    12
+}
+fn default_keep_recent() -> usize {
+    4
+}
+fn default_summarizer_model() -> String {
+    "gemma3:1b".to_string()
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
@@ -52,6 +150,10 @@ impl Default for HarnessConfig {
             ollama: OllamaConfig::default(),
             session: SessionConfig::default(),
             verify: VerifyConfig::default(),
+            selfmon: SelfmonConfig::default(),
+            queue: QueueConfig::default(),
+            context: ContextConfig::default(),
+            audio: AudioSettings::default(),
         }
     }
 }

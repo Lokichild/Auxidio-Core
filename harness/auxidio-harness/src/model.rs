@@ -60,15 +60,15 @@ impl ModelClient for OllamaClient {
 }
 
 pub struct ScriptedClient {
-    responses: std::cell::RefCell<Vec<String>>,
-    pub calls: std::cell::RefCell<Vec<Vec<ChatMessage>>>,
+    responses: std::sync::Mutex<Vec<String>>,
+    pub calls: std::sync::Mutex<Vec<Vec<ChatMessage>>>,
 }
 
 impl ScriptedClient {
     pub fn new(responses: Vec<String>) -> Self {
         Self {
-            responses: std::cell::RefCell::new(responses),
-            calls: std::cell::RefCell::new(vec![]),
+            responses: std::sync::Mutex::new(responses),
+            calls: std::sync::Mutex::new(vec![]),
         }
     }
 }
@@ -77,8 +77,8 @@ impl ModelClient for ScriptedClient {
     fn chat(&self, system: &str, history: &[ChatMessage]) -> Result<String, ModelError> {
         let mut full = vec![ChatMessage::system(system)];
         full.extend(history.iter().cloned());
-        self.calls.borrow_mut().push(full);
-        let mut queue = self.responses.borrow_mut();
+        self.calls.lock().unwrap().push(full);
+        let mut queue = self.responses.lock().unwrap();
         if queue.is_empty() {
             Ok("(scripted client exhausted)".to_string())
         } else {

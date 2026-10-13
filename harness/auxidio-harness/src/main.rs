@@ -18,12 +18,41 @@ fn main() {
         }
     };
 
-    let mut manager = match SessionManager::start_or_resume(conn, &config) {
+    let summarizer: Option<auxidio_harness::session::SharedSummarizer> = if config.context.enabled {
+        Some(std::sync::Arc::new(OllamaClient::new(
+            &config.ollama.url,
+            &config.context.summarizer_model,
+            config.ollama.timeout_secs,
+        )))
+    } else {
+        None
+    };
+
+    let mut manager = match SessionManager::start_or_resume(conn, &config, summarizer) {
         Ok(manager) => manager,
         Err(err) => {
             eprintln!("cannot start session: {}", err);
             std::process::exit(1);
         }
+    };
+
+    let selfmon = if config.selfmon.enabled {
+        match auxidio_harness::selfmon::start(
+            &config.db_path,
+            std::time::Duration::from_secs(config.selfmon.interval_secs),
+            auxidio_harness::output::deliver,
+        ) {
+            Ok(handle) => {
+                output::note("self monitor started");
+                Some(handle)
+            }
+            Err(err) => {
+                output::note(&format!("self monitor unavailable: {}", err));
+                None
+            }
+        }
+    } else {
+        None
     };
 
     println!("=== Auxidio Harness ===");
@@ -97,5 +126,8 @@ fn main() {
     match manager.finish() {
         Ok(()) => output::note("session closed and checkpointed"),
         Err(err) => output::note(&format!("session close failed: {}", err)),
+    }
+    if let Some(handle) = selfmon {
+        handle.stop();
     }
 }

@@ -1,7 +1,11 @@
 pub mod config;
+pub mod context;
 pub mod memory;
 pub mod model;
 pub mod output;
+pub mod queue;
+pub mod sensors;
 pub mod session;
+pub mod selfmon;
 pub mod tools;
 pub mod verifier;
